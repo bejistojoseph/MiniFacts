@@ -2,6 +2,8 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import FactCard from './FactCard';
+import { useToast } from '@/components/ui/use-toast';
+import { Link } from 'react-router-dom';
 
 // Sample data (in a real app, this would come from an API or database)
 const featuredFacts = [
@@ -62,6 +64,8 @@ const featuredFacts = [
 ];
 
 const FeaturedContent = () => {
+  const { toast } = useToast();
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -73,7 +77,20 @@ const FeaturedContent = () => {
             </p>
           </div>
           <div className="mt-4 md:mt-0 flex gap-2">
-            <Button variant="outline" className="border-teal-200 text-teal-600 hover:bg-teal-50">View All</Button>
+            <Button 
+              variant="outline" 
+              className="border-teal-200 text-teal-600 hover:bg-teal-50"
+              onClick={() => {
+                toast({
+                  title: "View All Content",
+                  description: "Browsing all facts and lifehacks",
+                  duration: 3000,
+                });
+              }}
+              asChild
+            >
+              <Link to="/browse">View All</Link>
+            </Button>
           </div>
         </div>
         

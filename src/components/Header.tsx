@@ -1,8 +1,9 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, Search, User, Lightbulb, Zap, Cpu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,6 +15,30 @@ import {
 } from "@/components/ui/navigation-menu";
 
 const Header = () => {
+  const { toast } = useToast();
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const location = useLocation();
+
+  const handleSearch = () => {
+    toast({
+      title: "Search",
+      description: "Search functionality coming soon!",
+      duration: 3000,
+    });
+  };
+
+  const handleSignIn = () => {
+    toast({
+      title: "Sign In",
+      description: "Sign in functionality coming soon!",
+      duration: 3000,
+    });
+  };
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
+  };
+
   return (
     <header className="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -47,7 +72,16 @@ const Header = () => {
                       </NavigationMenuLink>
                     </li>
                     <li>
-                      <Link to="/minifacts/science" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-purple-50 focus:bg-purple-50">
+                      <Link 
+                        to="/minifacts/science" 
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-purple-50 focus:bg-purple-50"
+                        onClick={() => {
+                          toast({
+                            title: "Science Facts",
+                            description: "Browsing science facts",
+                          });
+                        }}
+                      >
                         <div className="text-sm font-medium leading-none text-purple-800">Science Facts</div>
                         <p className="line-clamp-2 text-sm leading-snug text-purple-600">
                           Fascinating discoveries from the world of science.
@@ -55,7 +89,16 @@ const Header = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/minifacts/history" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-purple-50 focus:bg-purple-50">
+                      <Link 
+                        to="/minifacts/history" 
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-purple-50 focus:bg-purple-50"
+                        onClick={() => {
+                          toast({
+                            title: "History Facts",
+                            description: "Browsing historical facts",
+                          });
+                        }}
+                      >
                         <div className="text-sm font-medium leading-none text-purple-800">Historical Facts</div>
                         <p className="line-clamp-2 text-sm leading-snug text-purple-600">
                           Surprising events and stories from history.
@@ -72,7 +115,16 @@ const Header = () => {
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 w-[400px] md:w-[500px] lg:w-[600px] grid-cols-2">
                     <li>
-                      <Link to="/lifehacks/home" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-teal-50 focus:bg-teal-50">
+                      <Link 
+                        to="/lifehacks/home" 
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-teal-50 focus:bg-teal-50"
+                        onClick={() => {
+                          toast({
+                            title: "Home Hacks",
+                            description: "Browsing home hacks",
+                          });
+                        }}
+                      >
                         <div className="text-sm font-medium leading-none text-teal-800">Home Hacks</div>
                         <p className="line-clamp-2 text-sm leading-snug text-teal-600">
                           Smart solutions for everyday home problems.
@@ -80,7 +132,16 @@ const Header = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/lifehacks/kitchen" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-teal-50 focus:bg-teal-50">
+                      <Link 
+                        to="/lifehacks/kitchen" 
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-teal-50 focus:bg-teal-50"
+                        onClick={() => {
+                          toast({
+                            title: "Kitchen Hacks",
+                            description: "Browsing kitchen hacks",
+                          });
+                        }}
+                      >
                         <div className="text-sm font-medium leading-none text-teal-800">Kitchen Tricks</div>
                         <p className="line-clamp-2 text-sm leading-snug text-teal-600">
                           Clever cooking and food storage solutions.
@@ -109,7 +170,16 @@ const Header = () => {
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 w-[400px] md:w-[500px] lg:w-[600px]">
                     <li>
-                      <Link to="/tech" className="flex select-none flex-col justify-end rounded-md bg-gradient-to-b from-blue-50 to-blue-100 p-6 no-underline outline-none focus:shadow-md">
+                      <Link 
+                        to="/tech" 
+                        className="flex select-none flex-col justify-end rounded-md bg-gradient-to-b from-blue-50 to-blue-100 p-6 no-underline outline-none focus:shadow-md"
+                        onClick={() => {
+                          toast({
+                            title: "Tech Tips",
+                            description: "Browsing technology tips & tricks",
+                          });
+                        }}
+                      >
                         <div className="mb-2 mt-4 text-lg font-medium text-blue-600">
                           Technology Tips & Tricks
                         </div>
@@ -122,7 +192,16 @@ const Header = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link to="/submit" className="group flex items-center justify-between gap-1 px-4 py-2 text-sm font-medium transition-colors hover:text-teal-600">
+                <Link 
+                  to="/submit" 
+                  className="group flex items-center justify-between gap-1 px-4 py-2 text-sm font-medium transition-colors hover:text-teal-600"
+                  onClick={() => {
+                    toast({
+                      title: "Submit Content",
+                      description: "Submit your own facts and hacks",
+                    });
+                  }}
+                >
                   Submit
                   <span className="text-xs text-gray-400 transition-colors group-hover:text-teal-500">→</span>
                 </Link>
@@ -132,18 +211,106 @@ const Header = () => {
         </div>
 
         <div className="flex items-center space-x-2">
-          <Button variant="ghost" size="icon" className="text-gray-700 hover:bg-gray-100 hover:text-teal-600">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="text-gray-700 hover:bg-gray-100 hover:text-teal-600"
+            onClick={handleSearch}
+          >
             <Search size={20} />
           </Button>
-          <Button variant="ghost" size="icon" className="text-gray-700 hover:bg-gray-100 hover:text-teal-600 md:hidden">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="text-gray-700 hover:bg-gray-100 hover:text-teal-600 md:hidden"
+            onClick={toggleMobileMenu}
+          >
             <Menu size={20} />
           </Button>
-          <Button variant="outline" className="hidden md:flex border-teal-200 hover:bg-teal-50 hover:text-teal-700 hover:border-teal-300 transition-colors">
+          <Button 
+            variant="outline" 
+            className="hidden md:flex border-teal-200 hover:bg-teal-50 hover:text-teal-700 hover:border-teal-300 transition-colors"
+            onClick={handleSignIn}
+          >
             <User size={18} className="mr-2" />
             Sign In
           </Button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {showMobileMenu && (
+        <div className="md:hidden bg-white border-t border-gray-100 py-4 px-4 shadow-md animate-fade-in">
+          <nav className="flex flex-col space-y-3">
+            <Link 
+              to="/minifacts" 
+              className="flex items-center p-2 rounded-md hover:bg-gray-50"
+              onClick={() => {
+                setShowMobileMenu(false);
+                toast({
+                  title: "Amazing Facts",
+                  description: "Browsing amazing facts",
+                });
+              }}
+            >
+              <Lightbulb className="mr-3 text-purple-500" size={18} />
+              <span>Amazing Facts</span>
+            </Link>
+            <Link 
+              to="/lifehacks" 
+              className="flex items-center p-2 rounded-md hover:bg-gray-50"
+              onClick={() => {
+                setShowMobileMenu(false);
+                toast({
+                  title: "Life Hacks",
+                  description: "Browsing life hacks",
+                });
+              }}
+            >
+              <Zap className="mr-3 text-teal-500" size={18} />
+              <span>Life Hacks</span>
+            </Link>
+            <Link 
+              to="/tech" 
+              className="flex items-center p-2 rounded-md hover:bg-gray-50"
+              onClick={() => {
+                setShowMobileMenu(false);
+                toast({
+                  title: "Tech Tips",
+                  description: "Browsing tech tips",
+                });
+              }}
+            >
+              <Cpu className="mr-3 text-blue-500" size={18} />
+              <span>Tech Tips</span>
+            </Link>
+            <Link 
+              to="/submit" 
+              className="flex items-center p-2 rounded-md hover:bg-gray-50"
+              onClick={() => {
+                setShowMobileMenu(false);
+                toast({
+                  title: "Submit Content",
+                  description: "Submit your own facts and hacks",
+                });
+              }}
+            >
+              <span>Submit</span>
+            </Link>
+            <Button 
+              variant="outline" 
+              className="w-full border-teal-200 hover:bg-teal-50 mt-2"
+              onClick={() => {
+                setShowMobileMenu(false);
+                handleSignIn();
+              }}
+            >
+              <User size={18} className="mr-2" />
+              Sign In
+            </Button>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

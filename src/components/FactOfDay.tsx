@@ -3,8 +3,20 @@ import React from 'react';
 import { Calendar, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { useToast } from '@/components/ui/use-toast';
+import { Link } from 'react-router-dom';
 
 const FactOfDay = () => {
+  const { toast } = useToast();
+
+  const handleShare = () => {
+    toast({
+      title: "Share",
+      description: "Sharing functionality coming soon!",
+      duration: 3000,
+    });
+  };
+
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -25,7 +37,7 @@ const FactOfDay = () => {
               />
               <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center">
                 <Calendar size={14} className="text-teal-600 mr-1" />
-                <span className="text-xs font-medium">April 14, 2025</span>
+                <span className="text-xs font-medium">April 16, 2025</span>
               </div>
               <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent h-1/3 md:hidden"></div>
             </div>
@@ -39,11 +51,30 @@ const FactOfDay = () => {
                 Modern semiconductor chips contain transistors with features measured in nanometers. For perspective, a human hair is about 80,000-100,000 nanometers thick, while today's most advanced chips have features as small as 3-5 nanometers!
               </p>
               <div className="flex justify-between items-center mt-auto">
-                <Button variant="outline" size="sm" className="text-gray-600">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="text-gray-600"
+                  onClick={handleShare}
+                >
                   <Share2 size={16} className="mr-2" />
                   Share
                 </Button>
-                <Button className="bg-teal-500 hover:bg-teal-600">Read More</Button>
+                <Button 
+                  className="bg-teal-500 hover:bg-teal-600"
+                  onClick={() => {
+                    toast({
+                      title: "Interesting!",
+                      description: "Reading more about semiconductor technology",
+                      duration: 3000,
+                    });
+                  }}
+                  asChild
+                >
+                  <Link to="/article/computer-chip-fact">
+                    Read More
+                  </Link>
+                </Button>
               </div>
             </CardContent>
           </div>

@@ -2,8 +2,12 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
+  const { toast } = useToast();
+
   return (
     <section className="relative overflow-hidden bg-hero-pattern py-16 md:py-24 lg:py-32">
       {/* Decorative elements */}
@@ -27,12 +31,39 @@ const Hero = () => {
           </p>
           
           <div className="animate-fade-in flex flex-col sm:flex-row justify-center gap-4">
-            <Button size="lg" className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 group">
-              Explore Facts
-              <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 group"
+              onClick={() => {
+                toast({
+                  title: "Amazing Facts",
+                  description: "Exploring our collection of fascinating facts",
+                  duration: 3000,
+                });
+              }}
+              asChild
+            >
+              <Link to="/minifacts">
+                Explore Facts
+                <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-teal-200 text-teal-600 hover:bg-teal-50">
-              View Lifehacks
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-teal-200 text-teal-600 hover:bg-teal-50"
+              onClick={() => {
+                toast({
+                  title: "Life Hacks",
+                  description: "Discovering clever lifehacks for everyday problems",
+                  duration: 3000,
+                });
+              }}
+              asChild
+            >
+              <Link to="/lifehacks">
+                View Lifehacks
+              </Link>
             </Button>
           </div>
         </div>

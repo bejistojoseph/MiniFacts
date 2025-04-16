@@ -1,11 +1,45 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Facebook, Twitter, Instagram, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/components/ui/use-toast';
 
 const Footer = () => {
+  const { toast } = useToast();
+  const [email, setEmail] = useState('');
+
+  const handleSocialClick = (platform: string) => {
+    toast({
+      title: `${platform}`,
+      description: `${platform} sharing functionality coming soon`,
+      duration: 3000,
+    });
+  };
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !email.includes('@')) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address",
+        variant: "destructive",
+        duration: 3000,
+      });
+      return;
+    }
+
+    toast({
+      title: "Subscription successful!",
+      description: `You've been subscribed to our newsletter with ${email}`,
+      duration: 5000,
+    });
+    
+    setEmail('');
+  };
+
   return (
     <footer className="bg-white border-t border-gray-100 pt-12 pb-8">
       <div className="container mx-auto px-4">
@@ -20,18 +54,34 @@ const Footer = () => {
               Your daily source for amazing facts, clever lifehacks, and invaluable tips.
             </p>
             <div className="flex space-x-4 mt-6">
-              <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
+              <button 
+                className="text-gray-400 hover:text-teal-500 transition-colors"
+                onClick={() => handleSocialClick('Facebook')}
+                aria-label="Facebook"
+              >
                 <Facebook size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
+              </button>
+              <button 
+                className="text-gray-400 hover:text-teal-500 transition-colors"
+                onClick={() => handleSocialClick('Twitter')}
+                aria-label="Twitter"
+              >
                 <Twitter size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
+              </button>
+              <button 
+                className="text-gray-400 hover:text-teal-500 transition-colors"
+                onClick={() => handleSocialClick('Instagram')}
+                aria-label="Instagram"
+              >
                 <Instagram size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
+              </button>
+              <button 
+                className="text-gray-400 hover:text-teal-500 transition-colors"
+                onClick={() => handleSocialClick('GitHub')}
+                aria-label="GitHub"
+              >
                 <Github size={20} />
-              </a>
+              </button>
             </div>
           </div>
           
@@ -39,22 +89,62 @@ const Footer = () => {
             <h3 className="font-semibold text-gray-800 mb-4">Categories</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/minifacts" className="text-gray-600 hover:text-teal-500 transition-colors">
+                <Link 
+                  to="/minifacts" 
+                  className="text-gray-600 hover:text-teal-500 transition-colors"
+                  onClick={() => {
+                    toast({
+                      title: "Amazing Facts",
+                      description: "Browsing amazing facts",
+                      duration: 2000,
+                    });
+                  }}
+                >
                   Amazing Facts
                 </Link>
               </li>
               <li>
-                <Link to="/lifehacks" className="text-gray-600 hover:text-teal-500 transition-colors">
+                <Link 
+                  to="/lifehacks" 
+                  className="text-gray-600 hover:text-teal-500 transition-colors"
+                  onClick={() => {
+                    toast({
+                      title: "Life Hacks",
+                      description: "Browsing life hacks",
+                      duration: 2000,
+                    });
+                  }}
+                >
                   Life Hacks
                 </Link>
               </li>
               <li>
-                <Link to="/tech" className="text-gray-600 hover:text-teal-500 transition-colors">
+                <Link 
+                  to="/tech" 
+                  className="text-gray-600 hover:text-teal-500 transition-colors"
+                  onClick={() => {
+                    toast({
+                      title: "Tech Tips",
+                      description: "Browsing tech tips",
+                      duration: 2000,
+                    });
+                  }}
+                >
                   Tech Tips
                 </Link>
               </li>
               <li>
-                <Link to="/food" className="text-gray-600 hover:text-teal-500 transition-colors">
+                <Link 
+                  to="/food" 
+                  className="text-gray-600 hover:text-teal-500 transition-colors"
+                  onClick={() => {
+                    toast({
+                      title: "Food Hacks",
+                      description: "Browsing food hacks",
+                      duration: 2000,
+                    });
+                  }}
+                >
                   Food Hacks
                 </Link>
               </li>
@@ -65,22 +155,62 @@ const Footer = () => {
             <h3 className="font-semibold text-gray-800 mb-4">Company</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/about" className="text-gray-600 hover:text-teal-500 transition-colors">
+                <Link 
+                  to="/about" 
+                  className="text-gray-600 hover:text-teal-500 transition-colors"
+                  onClick={() => {
+                    toast({
+                      title: "About Us",
+                      description: "Learn more about SnappyTips",
+                      duration: 2000,
+                    });
+                  }}
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-600 hover:text-teal-500 transition-colors">
+                <Link 
+                  to="/contact" 
+                  className="text-gray-600 hover:text-teal-500 transition-colors"
+                  onClick={() => {
+                    toast({
+                      title: "Contact Us",
+                      description: "Get in touch with our team",
+                      duration: 2000,
+                    });
+                  }}
+                >
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link to="/privacy" className="text-gray-600 hover:text-teal-500 transition-colors">
+                <Link 
+                  to="/privacy" 
+                  className="text-gray-600 hover:text-teal-500 transition-colors"
+                  onClick={() => {
+                    toast({
+                      title: "Privacy Policy",
+                      description: "Read our privacy policy",
+                      duration: 2000,
+                    });
+                  }}
+                >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-gray-600 hover:text-teal-500 transition-colors">
+                <Link 
+                  to="/terms" 
+                  className="text-gray-600 hover:text-teal-500 transition-colors"
+                  onClick={() => {
+                    toast({
+                      title: "Terms of Service",
+                      description: "Read our terms of service",
+                      duration: 2000,
+                    });
+                  }}
+                >
                   Terms of Service
                 </Link>
               </li>
@@ -92,17 +222,23 @@ const Footer = () => {
             <p className="text-gray-600 mb-4">
               Subscribe to get the latest facts and hacks!
             </p>
-            <div className="flex flex-col space-y-2">
+            <form onSubmit={handleSubscribe} className="flex flex-col space-y-2">
               <Input 
                 type="email" 
                 placeholder="Your email address" 
                 className="rounded-md"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
-              <Button className="w-full bg-gradient-to-r from-teal-500 to-purple-500 hover:from-teal-600 hover:to-purple-600">
+              <Button 
+                type="submit" 
+                className="w-full bg-gradient-to-r from-teal-500 to-purple-500 hover:from-teal-600 hover:to-purple-600"
+              >
                 <Mail size={16} className="mr-2" />
                 Subscribe
               </Button>
-            </div>
+            </form>
           </div>
         </div>
         
@@ -111,15 +247,45 @@ const Footer = () => {
             © {new Date().getFullYear()} SnappyTips. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-sm text-gray-500 hover:text-teal-500 transition-colors">
+            <Link 
+              to="/privacy" 
+              className="text-sm text-gray-500 hover:text-teal-500 transition-colors"
+              onClick={() => {
+                toast({
+                  title: "Privacy Policy",
+                  description: "Reading our privacy policy",
+                  duration: 2000,
+                });
+              }}
+            >
               Privacy
-            </a>
-            <a href="#" className="text-sm text-gray-500 hover:text-teal-500 transition-colors">
+            </Link>
+            <Link 
+              to="/terms" 
+              className="text-sm text-gray-500 hover:text-teal-500 transition-colors"
+              onClick={() => {
+                toast({
+                  title: "Terms of Service",
+                  description: "Reading our terms of service",
+                  duration: 2000,
+                });
+              }}
+            >
               Terms
-            </a>
-            <a href="#" className="text-sm text-gray-500 hover:text-teal-500 transition-colors">
+            </Link>
+            <Link 
+              to="/sitemap" 
+              className="text-sm text-gray-500 hover:text-teal-500 transition-colors"
+              onClick={() => {
+                toast({
+                  title: "Sitemap",
+                  description: "Viewing site structure",
+                  duration: 2000,
+                });
+              }}
+            >
               Sitemap
-            </a>
+            </Link>
           </div>
         </div>
       </div>

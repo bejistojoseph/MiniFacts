@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Lightbulb, Cpu, Coffee, Book, ArrowRight } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
 
 const categories = [
   {
@@ -12,7 +13,8 @@ const categories = [
     color: 'bg-purple-50 hover:bg-purple-100',
     textColor: 'text-purple-700',
     borderColor: 'border-purple-100',
-    link: '/minifacts'
+    link: '/minifacts',
+    toastMessage: 'Exploring amazing facts from around the world'
   },
   {
     id: 'lifehacks',
@@ -22,7 +24,8 @@ const categories = [
     color: 'bg-teal-50 hover:bg-teal-100',
     textColor: 'text-teal-700',
     borderColor: 'border-teal-100',
-    link: '/lifehacks'
+    link: '/lifehacks',
+    toastMessage: 'Discovering clever solutions for everyday life'
   },
   {
     id: 'tech',
@@ -32,7 +35,8 @@ const categories = [
     color: 'bg-blue-50 hover:bg-blue-100',
     textColor: 'text-blue-700',
     borderColor: 'border-blue-100',
-    link: '/tech'
+    link: '/tech',
+    toastMessage: 'Exploring tech tips to optimize your digital life'
   },
   {
     id: 'food',
@@ -42,11 +46,14 @@ const categories = [
     color: 'bg-amber-50 hover:bg-amber-100',
     textColor: 'text-amber-700',
     borderColor: 'border-amber-100',
-    link: '/food'
+    link: '/food',
+    toastMessage: 'Discovering clever food hacks to enhance your culinary skills'
   }
 ];
 
 const CategorySection = () => {
+  const { toast } = useToast();
+
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -63,6 +70,13 @@ const CategorySection = () => {
               key={category.id}
               to={category.link}
               className={`p-6 rounded-xl border ${category.borderColor} ${category.color} transition-colors duration-200 group hover:shadow-md`}
+              onClick={() => {
+                toast({
+                  title: category.title,
+                  description: category.toastMessage,
+                  duration: 3000,
+                });
+              }}
             >
               <div className="flex flex-col items-center text-center">
                 <div className="mb-4">

@@ -35,6 +35,19 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/article/:slug" element={<Article />} />
+              <Route path="/minifacts" element={<NotFound />} />
+              <Route path="/minifacts/:category" element={<NotFound />} />
+              <Route path="/lifehacks" element={<NotFound />} />
+              <Route path="/lifehacks/:category" element={<NotFound />} />
+              <Route path="/tech" element={<NotFound />} />
+              <Route path="/food" element={<NotFound />} />
+              <Route path="/browse" element={<NotFound />} />
+              <Route path="/submit" element={<NotFound />} />
+              <Route path="/about" element={<NotFound />} />
+              <Route path="/contact" element={<NotFound />} />
+              <Route path="/privacy" element={<NotFound />} />
+              <Route path="/terms" element={<NotFound />} />
+              <Route path="/sitemap" element={<NotFound />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
