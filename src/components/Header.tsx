@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, Search, User, Lightbulb, Zap, Cpu } from 'lucide-react';
+import { Menu, User, Lightbulb, Zap, Cpu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import {
@@ -19,18 +18,10 @@ const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const location = useLocation();
 
-  const handleSearch = () => {
-    toast({
-      title: "Search",
-      description: "Search functionality coming soon!",
-      duration: 3000,
-    });
-  };
-
   const handleSignIn = () => {
     toast({
-      title: "Sign In",
-      description: "Sign in functionality coming soon!",
+      title: "Authentication Coming Soon",
+      description: "Sign in functionality will be implemented with Supabase integration",
       duration: 3000,
     });
   };
@@ -214,14 +205,6 @@ const Header = () => {
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-gray-700 hover:bg-gray-100 hover:text-teal-600"
-            onClick={handleSearch}
-          >
-            <Search size={20} />
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="icon" 
             className="text-gray-700 hover:bg-gray-100 hover:text-teal-600 md:hidden"
             onClick={toggleMobileMenu}
           >
@@ -238,7 +221,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {showMobileMenu && (
         <div className="md:hidden bg-white border-t border-gray-100 py-4 px-4 shadow-md animate-fade-in">
           <nav className="flex flex-col space-y-3">
