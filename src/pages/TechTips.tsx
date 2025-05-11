@@ -7,7 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import { 
   Computer, 
   Smartphone, 
-  Browser, 
+  Globe, 
   Laptop,
   Shield
 } from 'lucide-react';
@@ -205,7 +205,7 @@ const categories = [
   { 
     id: 'browserInternet', 
     name: 'Browser & Internet Hacks', 
-    icon: <Browser className="w-6 h-6" />, 
+    icon: <Globe className="w-6 h-6" />, 
     color: 'text-amber-500',
     bgColor: 'bg-amber-50',
     borderColor: 'border-amber-100'
