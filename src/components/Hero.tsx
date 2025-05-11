@@ -41,7 +41,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-purple-200 text-purple-600 hover:bg-gradient-to-r hover:from-purple-50 hover:to-teal-50 hover:border-purple-300 hover:shadow-md transition-all duration-300"
+              className="border-purple-200 text-purple-600 hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-200 hover:border-purple-300 hover:shadow-md transition-all duration-300"
               onClick={() => {
                 toast({
                   title: "Life Hacks",
@@ -53,6 +53,23 @@ const Hero = () => {
             >
               <Link to="/lifehacks">
                 View Lifehacks
+              </Link>
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-blue-200 text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-200 hover:border-blue-300 hover:shadow-md transition-all duration-300"
+              onClick={() => {
+                toast({
+                  title: "Tech Tips",
+                  description: "Smart shortcuts for your digital life",
+                  duration: 3000,
+                });
+              }}
+              asChild
+            >
+              <Link to="/techtips">
+                Tech Tips
               </Link>
             </Button>
           </div>
