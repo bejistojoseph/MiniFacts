@@ -51,7 +51,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-teal-200 text-teal-600 hover:bg-gradient-to-r hover:from-teal-50 hover:to-blue-50 hover:border-teal-300 transition-all duration-300"
+              className="border-purple-200 text-purple-600 hover:bg-gradient-to-r hover:from-purple-50 hover:to-teal-50 hover:border-purple-300 hover:shadow-md transition-all duration-300"
               onClick={() => {
                 toast({
                   title: "Life Hacks",
