@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Article from "./pages/Article";
 import NotFound from "./pages/NotFound";
 import Loader from "./components/Loader";
+import LifeHacks from "./pages/LifeHacks";
 
 const queryClient = new QueryClient();
 
@@ -37,7 +38,7 @@ const App = () => {
               <Route path="/article/:slug" element={<Article />} />
               <Route path="/minifacts" element={<NotFound />} />
               <Route path="/minifacts/:category" element={<NotFound />} />
-              <Route path="/lifehacks" element={<NotFound />} />
+              <Route path="/lifehacks" element={<LifeHacks />} />
               <Route path="/lifehacks/:category" element={<NotFound />} />
               <Route path="/tech" element={<NotFound />} />
               <Route path="/food" element={<NotFound />} />
