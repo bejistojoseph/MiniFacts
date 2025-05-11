@@ -25,13 +25,13 @@ const RandomHackButton = ({ allHacks }: RandomHackButtonProps) => {
 
     // Display the hack in a toast notification
     toast({
-      title: (
-        <div className="flex items-center gap-2">
+      title: randomHack.title,
+      description: (
+        <div className="flex items-start gap-2">
           <span className="text-xl">{randomHack.icon}</span>
-          <span>{randomHack.title}</span>
+          <span>{randomHack.description}</span>
         </div>
       ),
-      description: randomHack.description,
       duration: 5000,
     });
   };
