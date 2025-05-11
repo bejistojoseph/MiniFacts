@@ -77,7 +77,7 @@ const lifehacksData = {
     {
       id: 'h5',
       title: 'Coffee Filter Screen Cleaner',
-      description: 'Use a coffee filter to clean TV screens—it's lint-free and gentle.',
+      description: "Use a coffee filter to clean TV screens—it's lint-free and gentle.",
       icon: '📺'
     }
   ],
