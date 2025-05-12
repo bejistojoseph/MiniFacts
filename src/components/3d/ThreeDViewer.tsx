@@ -1,6 +1,7 @@
 
-import React, { useRef, useMemo } from 'react';
+import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Available model types
@@ -10,36 +11,11 @@ interface ThreeDViewerProps {
   type: ModelType;
 }
 
-// Simple OrbitControls component to avoid using drei's OrbitControls
-const OrbitControls = () => {
-  const { gl, camera } = useThree();
-  
-  // Create orbit controls
-  const controls = useMemo(() => {
-    const controls = new THREE.OrbitControls(camera, gl.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.minDistance = 2;
-    controls.maxDistance = 10;
-    return controls;
-  }, [camera, gl]);
-  
-  // Update controls in animation loop
-  useFrame(() => {
-    controls.update();
-  });
-  
-  return null;
-};
-
-// Use THREE context
-const useThree = () => React.useContext(React.createContext<any>({}));
-
 // Geometric shapes model
 const GeometricModel = () => {
-  const boxRef = useRef<THREE.Mesh>();
-  const torusRef = useRef<THREE.Mesh>();
-  const icoRef = useRef<THREE.Mesh>();
+  const boxRef = useRef<THREE.Mesh>(null!);
+  const torusRef = useRef<THREE.Mesh>(null!);
+  const icoRef = useRef<THREE.Mesh>(null!);
 
   // Animate the models
   useFrame(() => {
@@ -79,20 +55,16 @@ const GeometricModel = () => {
 
 // Earth model
 const EarthModel = () => {
-  const earthRef = useRef<THREE.Mesh>();
+  const earthRef = useRef<THREE.Mesh>(null!);
   
   // Create textures
-  const earthTexture = useMemo(() => {
-    return new THREE.TextureLoader().load(
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg'
-    );
-  }, []);
+  const earthTexture = new THREE.TextureLoader().load(
+    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg'
+  );
   
-  const earthBumpMap = useMemo(() => {
-    return new THREE.TextureLoader().load(
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg'
-    );
-  }, []);
+  const earthBumpMap = new THREE.TextureLoader().load(
+    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg'
+  );
 
   // Animate the earth
   useFrame(() => {
@@ -115,20 +87,16 @@ const EarthModel = () => {
 
 // Space model
 const SpaceModel = () => {
-  const groupRef = useRef<THREE.Group>();
+  const groupRef = useRef<THREE.Group>(null!);
   
   // Create textures
-  const sunTexture = useMemo(() => {
-    return new THREE.TextureLoader().load(
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/sun.jpg'
-    );
-  }, []);
+  const sunTexture = new THREE.TextureLoader().load(
+    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/sun.jpg'
+  );
   
-  const marsTexture = useMemo(() => {
-    return new THREE.TextureLoader().load(
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mars.jpg'
-    );
-  }, []);
+  const marsTexture = new THREE.TextureLoader().load(
+    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mars.jpg'
+  );
 
   // Animate the models
   useFrame(() => {
@@ -163,7 +131,7 @@ const SpaceModel = () => {
 // Main 3D viewer component
 const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ type }) => {
   // Select the appropriate model based on type
-  const Model = useMemo(() => {
+  const renderModel = () => {
     switch (type) {
       case 'geometric':
         return <GeometricModel />;
@@ -174,25 +142,29 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ type }) => {
       default:
         return <GeometricModel />;
     }
-  }, [type]);
+  };
 
   return (
     <div className="h-full w-full">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 45 }}
         className="h-full w-full outline-none"
-        gl={{ alpha: true, antialias: true }}
       >
-        <color attach="background" args={['transparent']} />
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
         
         {/* The selected model */}
-        {Model}
+        {renderModel()}
         
         {/* Camera controls */}
-        <OrbitControls />
+        <OrbitControls 
+          enablePan={true}
+          enableZoom={true}
+          enableRotate={true}
+          minDistance={2}
+          maxDistance={10}
+        />
       </Canvas>
     </div>
   );
