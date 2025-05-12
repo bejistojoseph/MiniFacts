@@ -1,7 +1,7 @@
 
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, useTexture, Sphere, Box, Torus, Icosahedron } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Available model types
@@ -13,9 +13,9 @@ interface ThreeDViewerProps {
 
 // Geometric shapes model
 const GeometricModel = () => {
-  const boxRef = useRef<THREE.Mesh>(null);
-  const torusRef = useRef<THREE.Mesh>(null);
-  const icoRef = useRef<THREE.Mesh>(null);
+  const boxRef = useRef<THREE.Mesh>(null!);
+  const torusRef = useRef<THREE.Mesh>(null!);
+  const icoRef = useRef<THREE.Mesh>(null!);
 
   // Animate the models
   useFrame(() => {
@@ -35,42 +35,42 @@ const GeometricModel = () => {
 
   return (
     <group position={[0, 0, 0]}>
-      <Box 
-        ref={boxRef}
-        args={[1, 1, 1]} 
-        position={[-1.5, 0, 0]}
-      >
+      <mesh ref={boxRef} position={[-1.5, 0, 0]}>
+        <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color="#8B5CF6" />
-      </Box>
+      </mesh>
       
-      <Torus 
-        ref={torusRef}
-        args={[0.6, 0.2, 16, 32]} 
-        position={[0, 0, 0]}
-      >
+      <mesh ref={torusRef} position={[0, 0, 0]}>
+        <torusGeometry args={[0.6, 0.2, 16, 32]} />
         <meshStandardMaterial color="#06B6D4" />
-      </Torus>
+      </mesh>
       
-      <Icosahedron
-        ref={icoRef}
-        args={[0.7, 1]} 
-        position={[1.5, 0, 0]}
-      >
+      <mesh ref={icoRef} position={[1.5, 0, 0]}>
+        <icosahedronGeometry args={[0.7, 1]} />
         <meshStandardMaterial color="#EC4899" wireframe />
-      </Icosahedron>
+      </mesh>
     </group>
   );
 };
 
 // Earth model
 const EarthModel = () => {
-  const earthRef = useRef<THREE.Mesh>(null);
+  const earthRef = useRef<THREE.Mesh>(null!);
   
-  // Load textures
-  const props = useTexture({
-    map: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg',
-    bumpMap: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg',
-  });
+  // Create textures
+  const earthTexture = useMemo(() => {
+    const texture = new THREE.TextureLoader().load(
+      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg'
+    );
+    return texture;
+  }, []);
+  
+  const earthBumpMap = useMemo(() => {
+    const texture = new THREE.TextureLoader().load(
+      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg'
+    );
+    return texture;
+  }, []);
 
   // Animate the earth
   useFrame(() => {
@@ -80,22 +80,33 @@ const EarthModel = () => {
   });
 
   return (
-    <Sphere ref={earthRef} args={[1.5, 32, 32]} position={[0, 0, 0]}>
+    <mesh ref={earthRef} position={[0, 0, 0]}>
+      <sphereGeometry args={[1.5, 32, 32]} />
       <meshStandardMaterial 
-        {...props} 
+        map={earthTexture}
+        bumpMap={earthBumpMap}
         bumpScale={0.05}
       />
-    </Sphere>
+    </mesh>
   );
 };
 
 // Space model
 const SpaceModel = () => {
-  const groupRef = useRef<THREE.Group>(null);
+  const groupRef = useRef<THREE.Group>(null!);
   
-  // Load textures
-  const sunTexture = useTexture('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/sun.jpg');
-  const marsTexture = useTexture('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mars.jpg');
+  // Create textures
+  const sunTexture = useMemo(() => {
+    return new THREE.TextureLoader().load(
+      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/sun.jpg'
+    );
+  }, []);
+  
+  const marsTexture = useMemo(() => {
+    return new THREE.TextureLoader().load(
+      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mars.jpg'
+    );
+  }, []);
 
   // Animate the models
   useFrame(() => {
@@ -107,9 +118,10 @@ const SpaceModel = () => {
   return (
     <group ref={groupRef}>
       {/* Sun */}
-      <Sphere args={[1, 32, 32]} position={[0, 0, 0]}>
+      <mesh position={[0, 0, 0]}>
+        <sphereGeometry args={[1, 32, 32]} />
         <meshStandardMaterial map={sunTexture} emissive="#FFA500" emissiveIntensity={0.5} />
-      </Sphere>
+      </mesh>
       
       {/* Orbit path */}
       <mesh rotation-x={Math.PI/2}>
@@ -118,9 +130,10 @@ const SpaceModel = () => {
       </mesh>
       
       {/* Planet */}
-      <Sphere args={[0.4, 32, 32]} position={[2.5, 0, 0]}>
+      <mesh position={[2.5, 0, 0]}>
+        <sphereGeometry args={[0.4, 32, 32]} />
         <meshStandardMaterial map={marsTexture} />
-      </Sphere>
+      </mesh>
     </group>
   );
 };
