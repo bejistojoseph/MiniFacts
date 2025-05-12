@@ -146,6 +146,7 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ type }) => {
       <Canvas
         camera={{ position: [0, 0, 5], fov: 45 }}
         className="h-full w-full outline-none"
+        gl={{ alpha: true, antialias: true }}
       >
         <color attach="background" args={['transparent']} />
         <ambientLight intensity={0.5} />
