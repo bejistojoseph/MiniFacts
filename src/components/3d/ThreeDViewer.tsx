@@ -1,7 +1,6 @@
 
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Available model types
@@ -11,11 +10,36 @@ interface ThreeDViewerProps {
   type: ModelType;
 }
 
+// Simple OrbitControls component to avoid using drei's OrbitControls
+const OrbitControls = () => {
+  const { gl, camera } = useThree();
+  
+  // Create orbit controls
+  const controls = useMemo(() => {
+    const controls = new THREE.OrbitControls(camera, gl.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.minDistance = 2;
+    controls.maxDistance = 10;
+    return controls;
+  }, [camera, gl]);
+  
+  // Update controls in animation loop
+  useFrame(() => {
+    controls.update();
+  });
+  
+  return null;
+};
+
+// Use THREE context
+const useThree = () => React.useContext(React.createContext<any>({}));
+
 // Geometric shapes model
 const GeometricModel = () => {
-  const boxRef = useRef<THREE.Mesh>(null!);
-  const torusRef = useRef<THREE.Mesh>(null!);
-  const icoRef = useRef<THREE.Mesh>(null!);
+  const boxRef = useRef<THREE.Mesh>();
+  const torusRef = useRef<THREE.Mesh>();
+  const icoRef = useRef<THREE.Mesh>();
 
   // Animate the models
   useFrame(() => {
@@ -55,21 +79,19 @@ const GeometricModel = () => {
 
 // Earth model
 const EarthModel = () => {
-  const earthRef = useRef<THREE.Mesh>(null!);
+  const earthRef = useRef<THREE.Mesh>();
   
   // Create textures
   const earthTexture = useMemo(() => {
-    const texture = new THREE.TextureLoader().load(
+    return new THREE.TextureLoader().load(
       'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg'
     );
-    return texture;
   }, []);
   
   const earthBumpMap = useMemo(() => {
-    const texture = new THREE.TextureLoader().load(
+    return new THREE.TextureLoader().load(
       'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg'
     );
-    return texture;
   }, []);
 
   // Animate the earth
@@ -93,7 +115,7 @@ const EarthModel = () => {
 
 // Space model
 const SpaceModel = () => {
-  const groupRef = useRef<THREE.Group>(null!);
+  const groupRef = useRef<THREE.Group>();
   
   // Create textures
   const sunTexture = useMemo(() => {
@@ -170,13 +192,7 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ type }) => {
         {Model}
         
         {/* Camera controls */}
-        <OrbitControls 
-          enablePan={true}
-          enableZoom={true}
-          enableRotate={true}
-          minDistance={2}
-          maxDistance={10}
-        />
+        <OrbitControls />
       </Canvas>
     </div>
   );
