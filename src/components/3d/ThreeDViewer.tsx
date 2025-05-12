@@ -1,7 +1,6 @@
 
-import React, { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import React, { useRef, useEffect } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
 // Available model types
@@ -10,6 +9,26 @@ type ModelType = 'geometric' | 'earth' | 'space';
 interface ThreeDViewerProps {
   type: ModelType;
 }
+
+// Custom OrbitControls implementation to avoid using @react-three/drei
+const OrbitControls = () => {
+  const { camera, gl } = useThree();
+  
+  useEffect(() => {
+    // Import OrbitControls from Three.js directly
+    const controls = new THREE.OrbitControls(camera, gl.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.minDistance = 2;
+    controls.maxDistance = 10;
+    
+    return () => {
+      controls.dispose();
+    };
+  }, [camera, gl]);
+  
+  return null;
+};
 
 // Geometric shapes model
 const GeometricModel = () => {
@@ -157,14 +176,8 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ type }) => {
         {/* The selected model */}
         {renderModel()}
         
-        {/* Camera controls */}
-        <OrbitControls 
-          enablePan={true}
-          enableZoom={true}
-          enableRotate={true}
-          minDistance={2}
-          maxDistance={10}
-        />
+        {/* Custom camera controls */}
+        <OrbitControls />
       </Canvas>
     </div>
   );
