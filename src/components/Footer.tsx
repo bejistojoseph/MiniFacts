@@ -47,7 +47,7 @@ const Footer = () => {
           <div className="col-span-1">
             <Link to="/" className="text-2xl font-display font-bold text-teal-600 flex items-center">
               <span className="bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text text-transparent">
-                SnappyTips
+                Minifacts
               </span>
             </Link>
             <p className="mt-4 text-gray-600">
@@ -244,7 +244,7 @@ const Footer = () => {
         
         <div className="border-t border-gray-200 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} SnappyTips. All rights reserved.
+            © {new Date().getFullYear()} Minifacts. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link 

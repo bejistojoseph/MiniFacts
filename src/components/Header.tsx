@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, User, Lightbulb, Zap, Cpu } from 'lucide-react';
@@ -36,7 +37,7 @@ const Header = () => {
         <div className="flex items-center">
           <Link to="/" className="text-2xl font-display font-bold text-teal-600 flex items-center group">
             <span className="bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text text-transparent transition-all duration-300 group-hover:from-purple-500 group-hover:to-teal-500">
-              SnappyTips
+              Minifacts
             </span>
           </Link>
         </div>
