@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, User, Lightbulb, Zap, Cpu, Cube } from 'lucide-react';
+import { Menu, User, Lightbulb, Zap, Cpu, Box } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import {
@@ -185,7 +184,7 @@ const Header = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent hover:bg-gray-50">
-                  <Cube className="mr-1 text-teal-600" size={18} /> 3D Models
+                  <Box className="mr-1 text-teal-600" size={18} /> 3D Models
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 w-[400px] md:w-[500px] lg:w-[600px]">
@@ -300,7 +299,7 @@ const Header = () => {
                 });
               }}
             >
-              <Cube className="mr-3 text-teal-600" size={18} />
+              <Box className="mr-3 text-teal-600" size={18} />
               <span>3D Models</span>
             </Link>
             <Link 

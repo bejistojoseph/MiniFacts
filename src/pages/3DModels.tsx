@@ -1,10 +1,9 @@
-
 import React, { Suspense } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ThreeDViewer from '@/components/3d/ThreeDViewer';
-import { Cube, Navigation, Compass } from 'lucide-react';
+import { Box, Navigation, Compass } from 'lucide-react';
 import ModelLoader from '@/components/3d/ModelLoader';
 
 const ThreeDModels = () => {
@@ -22,7 +21,7 @@ const ThreeDModels = () => {
             <Tabs defaultValue="cube" className="w-full">
               <TabsList className="grid w-full grid-cols-3 mb-8">
                 <TabsTrigger value="cube" className="flex items-center justify-center gap-2">
-                  <Cube className="w-5 h-5" />
+                  <Box className="w-5 h-5" />
                   <span className="hidden sm:inline">Geometric Facts</span>
                 </TabsTrigger>
                 <TabsTrigger value="compass" className="flex items-center justify-center gap-2">

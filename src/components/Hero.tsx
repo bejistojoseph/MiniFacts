@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowRight, Cube } from 'lucide-react';
+import { ArrowRight, Box } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { Link } from 'react-router-dom';
@@ -89,7 +89,7 @@ const Hero = () => {
               asChild
             >
               <Link to="/3dmodels" className="flex items-center gap-2">
-                <Cube size={16} />
+                <Box size={16} />
                 Explore 3D Models
               </Link>
             </Button>
