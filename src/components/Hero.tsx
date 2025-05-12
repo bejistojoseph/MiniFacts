@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowRight, Box } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { Link } from 'react-router-dom';
@@ -70,27 +70,6 @@ const Hero = () => {
             >
               <Link to="/techtips">
                 Tech Tips
-              </Link>
-            </Button>
-          </div>
-          
-          <div className="mt-6">
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-teal-200 text-teal-600 hover:bg-gradient-to-r hover:from-teal-50 hover:to-teal-200 hover:border-teal-300 hover:shadow-md transition-all duration-300"
-              onClick={() => {
-                toast({
-                  title: "3D Models",
-                  description: "Interactive 3D models to explore",
-                  duration: 3000,
-                });
-              }}
-              asChild
-            >
-              <Link to="/3dmodels" className="flex items-center gap-2">
-                <Box size={16} />
-                Explore 3D Models
               </Link>
             </Button>
           </div>
