@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, User, Lightbulb, Zap, Cpu } from 'lucide-react';
+import { Menu, User, Lightbulb, Zap, Cpu, Cube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import {
@@ -184,6 +184,28 @@ const Header = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-transparent hover:bg-gray-50">
+                  <Cube className="mr-1 text-teal-600" size={18} /> 3D Models
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid gap-3 p-4 w-[400px] md:w-[500px] lg:w-[600px]">
+                    <li>
+                      <Link 
+                        to="/3dmodels" 
+                        className="flex select-none flex-col justify-end rounded-md bg-gradient-to-b from-teal-50 to-teal-100 p-6 no-underline outline-none focus:shadow-md"
+                      >
+                        <div className="mb-2 mt-4 text-lg font-medium text-teal-600">
+                          Interactive 3D Models
+                        </div>
+                        <p className="text-sm leading-tight text-teal-700 opacity-90">
+                          Explore fascinating objects and concepts in interactive 3D.
+                        </p>
+                      </Link>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
                 <Link 
                   to="/submit" 
                   className="group flex items-center justify-between gap-1 px-4 py-2 text-sm font-medium transition-colors hover:text-teal-600"
@@ -266,6 +288,20 @@ const Header = () => {
             >
               <Cpu className="mr-3 text-blue-500" size={18} />
               <span>Tech Tips</span>
+            </Link>
+            <Link 
+              to="/3dmodels" 
+              className="flex items-center p-2 rounded-md hover:bg-gray-50"
+              onClick={() => {
+                setShowMobileMenu(false);
+                toast({
+                  title: "3D Models",
+                  description: "Browsing 3D models",
+                });
+              }}
+            >
+              <Cube className="mr-3 text-teal-600" size={18} />
+              <span>3D Models</span>
             </Link>
             <Link 
               to="/submit" 

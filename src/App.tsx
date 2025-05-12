@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import Loader from "./components/Loader";
 import LifeHacks from "./pages/LifeHacks";
 import TechTips from "./pages/TechTips";
+import ThreeDModels from "./pages/3DModels";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => {
               <Route path="/lifehacks" element={<LifeHacks />} />
               <Route path="/lifehacks/:category" element={<NotFound />} />
               <Route path="/techtips" element={<TechTips />} />
+              <Route path="/3dmodels" element={<ThreeDModels />} />
               <Route path="/food" element={<NotFound />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
