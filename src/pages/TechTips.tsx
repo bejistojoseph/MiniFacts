@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -9,7 +8,8 @@ import {
   Smartphone, 
   Globe, 
   Laptop,
-  Shield
+  Shield,
+  Share2
 } from 'lucide-react';
 
 // Tech tips data organized by categories
@@ -258,6 +258,47 @@ const TechTips = () => {
     });
   };
 
+  const handleShare = (tip) => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: 'Tech Tip: ' + tip.title,
+          text: `${tip.title} - ${tip.description}`,
+          url: window.location.href,
+        })
+        .then(() => {
+          toast({
+            title: "Shared successfully!",
+            description: "The tech tip has been shared",
+            duration: 3000,
+          });
+        })
+        .catch((error) => {
+          toast({
+            title: "Sharing failed",
+            description: error.message || "There was an error sharing the content",
+            duration: 3000,
+          });
+        });
+    } else {
+      const shareText = `Tech Tip: ${tip.title} - ${tip.description} ${window.location.href}`;
+      
+      navigator.clipboard.writeText(shareText).then(() => {
+        toast({
+          title: "Copied to clipboard!",
+          description: "Share this tech tip with your friends",
+          duration: 3000,
+        });
+      }).catch(() => {
+        toast({
+          title: "Unable to copy",
+          description: "Please select and copy the text manually",
+          duration: 3000,
+        });
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -323,8 +364,19 @@ const TechTips = () => {
                 >
                   <div className="flex items-start gap-4">
                     <div className="text-3xl">{tip.icon}</div>
-                    <div>
-                      <h3 className={`text-xl font-semibold mb-2 ${categories.find(cat => cat.id === activeCategory).color}`}>{tip.title}</h3>
+                    <div className="flex-1">
+                      <div className="flex justify-between items-start">
+                        <h3 className={`text-xl font-semibold mb-2 ${categories.find(cat => cat.id === activeCategory).color}`}>{tip.title}</h3>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => handleShare(tip)}
+                          className="h-8 w-8 rounded-full hover:bg-gray-100"
+                          title="Share this tip"
+                        >
+                          <Share2 className="h-4 w-4" />
+                        </Button>
+                      </div>
                       <p className="text-gray-700">{tip.description}</p>
                     </div>
                   </div>
