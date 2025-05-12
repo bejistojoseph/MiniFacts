@@ -18,7 +18,7 @@ const GeometricModel = () => {
   const icoRef = useRef<THREE.Mesh>(null);
 
   // Animate the models
-  useFrame((state) => {
+  useFrame(() => {
     if (boxRef.current) {
       boxRef.current.rotation.x += 0.005;
       boxRef.current.rotation.y += 0.005;
@@ -98,7 +98,7 @@ const SpaceModel = () => {
   const marsTexture = useTexture('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mars.jpg');
 
   // Animate the models
-  useFrame((state) => {
+  useFrame(() => {
     if (groupRef.current) {
       groupRef.current.rotation.y += 0.003;
     }
