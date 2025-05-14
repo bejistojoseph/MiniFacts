@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, User, Lightbulb, Zap, Cpu } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, User, Lightbulb, Zap, Cpu, Brain } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import {
@@ -16,6 +16,7 @@ import {
 
 const Header = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const location = useLocation();
 
@@ -36,6 +37,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/" className="text-2xl font-display font-bold text-teal-600 flex items-center group">
+            <Brain size={28} className="mr-2 text-teal-600 group-hover:text-purple-500 transition-colors duration-300" />
             <span className="bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text text-transparent transition-all duration-300 group-hover:from-purple-500 group-hover:to-teal-500">
               Minifacts
             </span>
@@ -67,12 +69,6 @@ const Header = () => {
                       <Link 
                         to="/minifacts/science" 
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-purple-50 focus:bg-purple-50"
-                        onClick={() => {
-                          toast({
-                            title: "Science Facts",
-                            description: "Browsing science facts",
-                          });
-                        }}
                       >
                         <div className="text-sm font-medium leading-none text-purple-800">Science Facts</div>
                         <p className="line-clamp-2 text-sm leading-snug text-purple-600">
@@ -84,12 +80,6 @@ const Header = () => {
                       <Link 
                         to="/minifacts/history" 
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-purple-50 focus:bg-purple-50"
-                        onClick={() => {
-                          toast({
-                            title: "History Facts",
-                            description: "Browsing historical facts",
-                          });
-                        }}
                       >
                         <div className="text-sm font-medium leading-none text-purple-800">Historical Facts</div>
                         <p className="line-clamp-2 text-sm leading-snug text-purple-600">
@@ -110,12 +100,6 @@ const Header = () => {
                       <Link 
                         to="/lifehacks/home" 
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-teal-50 focus:bg-teal-50"
-                        onClick={() => {
-                          toast({
-                            title: "Home Hacks",
-                            description: "Browsing home hacks",
-                          });
-                        }}
                       >
                         <div className="text-sm font-medium leading-none text-teal-800">Home Hacks</div>
                         <p className="line-clamp-2 text-sm leading-snug text-teal-600">
@@ -127,12 +111,6 @@ const Header = () => {
                       <Link 
                         to="/lifehacks/kitchen" 
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-teal-50 focus:bg-teal-50"
-                        onClick={() => {
-                          toast({
-                            title: "Kitchen Hacks",
-                            description: "Browsing kitchen hacks",
-                          });
-                        }}
                       >
                         <div className="text-sm font-medium leading-none text-teal-800">Kitchen Tricks</div>
                         <p className="line-clamp-2 text-sm leading-snug text-teal-600">
@@ -165,12 +143,6 @@ const Header = () => {
                       <Link 
                         to="/techtips" 
                         className="flex select-none flex-col justify-end rounded-md bg-gradient-to-b from-blue-50 to-blue-100 p-6 no-underline outline-none focus:shadow-md"
-                        onClick={() => {
-                          toast({
-                            title: "Tech Tips",
-                            description: "Browsing technology tips & tricks",
-                          });
-                        }}
                       >
                         <div className="mb-2 mt-4 text-lg font-medium text-blue-600">
                           Technology Tips & Tricks
@@ -187,12 +159,6 @@ const Header = () => {
                 <Link 
                   to="/submit" 
                   className="group flex items-center justify-between gap-1 px-4 py-2 text-sm font-medium transition-colors hover:text-teal-600"
-                  onClick={() => {
-                    toast({
-                      title: "Submit Content",
-                      description: "Submit your own facts and hacks",
-                    });
-                  }}
                 >
                   Submit
                   <span className="text-xs text-gray-400 transition-colors group-hover:text-teal-500">→</span>
@@ -228,13 +194,7 @@ const Header = () => {
             <Link 
               to="/minifacts" 
               className="flex items-center p-2 rounded-md hover:bg-gray-50"
-              onClick={() => {
-                setShowMobileMenu(false);
-                toast({
-                  title: "Amazing Facts",
-                  description: "Browsing amazing facts",
-                });
-              }}
+              onClick={() => setShowMobileMenu(false)}
             >
               <Lightbulb className="mr-3 text-purple-500" size={18} />
               <span>Amazing Facts</span>
@@ -242,13 +202,7 @@ const Header = () => {
             <Link 
               to="/lifehacks" 
               className="flex items-center p-2 rounded-md hover:bg-gray-50"
-              onClick={() => {
-                setShowMobileMenu(false);
-                toast({
-                  title: "Life Hacks",
-                  description: "Browsing life hacks",
-                });
-              }}
+              onClick={() => setShowMobileMenu(false)}
             >
               <Zap className="mr-3 text-teal-500" size={18} />
               <span>Life Hacks</span>
@@ -256,13 +210,7 @@ const Header = () => {
             <Link 
               to="/techtips" 
               className="flex items-center p-2 rounded-md hover:bg-gray-50"
-              onClick={() => {
-                setShowMobileMenu(false);
-                toast({
-                  title: "Tech Tips",
-                  description: "Browsing tech tips",
-                });
-              }}
+              onClick={() => setShowMobileMenu(false)}
             >
               <Cpu className="mr-3 text-blue-500" size={18} />
               <span>Tech Tips</span>
@@ -270,13 +218,7 @@ const Header = () => {
             <Link 
               to="/submit" 
               className="flex items-center p-2 rounded-md hover:bg-gray-50"
-              onClick={() => {
-                setShowMobileMenu(false);
-                toast({
-                  title: "Submit Content",
-                  description: "Submit your own facts and hacks",
-                });
-              }}
+              onClick={() => setShowMobileMenu(false)}
             >
               <span>Submit</span>
             </Link>
