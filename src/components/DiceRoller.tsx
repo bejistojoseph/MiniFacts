@@ -1,0 +1,69 @@
+
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Dices } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+
+type DiceRollerProps = {
+  onRollComplete: () => void;
+};
+
+const DiceRoller: React.FC<DiceRollerProps> = ({ onRollComplete }) => {
+  const [isRolling, setIsRolling] = useState(false);
+  const { toast } = useToast();
+  
+  const rollDice = () => {
+    if (isRolling) return;
+    
+    setIsRolling(true);
+    toast({
+      title: "Rolling the dice...",
+      description: "Let's see what life hack you get!",
+      duration: 2000,
+    });
+    
+    // Play rolling animation
+    const diceElements = document.querySelectorAll('.dice-dot');
+    diceElements.forEach(el => {
+      el.classList.add('animate-pulse');
+    });
+    
+    // Simulate dice roll with a delay
+    setTimeout(() => {
+      setIsRolling(false);
+      // Stop animation
+      diceElements.forEach(el => {
+        el.classList.remove('animate-pulse');
+      });
+      onRollComplete();
+    }, 2000);
+  };
+  
+  return (
+    <div className="flex flex-col items-center">
+      <Button
+        onClick={rollDice}
+        disabled={isRolling}
+        className={`bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-md hover:shadow-lg transition-all group flex items-center gap-3 relative overflow-hidden ${isRolling ? 'animate-pulse' : ''}`}
+        size="lg"
+      >
+        <div className="flex items-center justify-center relative">
+          <Dices className={`w-6 h-6 ${isRolling ? 'animate-spin' : ''}`} />
+        </div>
+        <span>Roll for a Life Hack</span>
+      </Button>
+      
+      {/* Visual dice representation */}
+      <div className={`mt-4 grid grid-cols-3 gap-1 p-2 bg-white rounded-lg shadow-inner w-16 h-16 ${isRolling ? 'animate-bounce' : ''}`}>
+        <span className="dice-dot w-3 h-3 bg-purple-600 rounded-full"></span>
+        <span className="dice-dot w-3 h-3 bg-purple-600 rounded-full"></span>
+        <span className="dice-dot w-3 h-3 bg-purple-600 rounded-full"></span>
+        <span className="dice-dot w-3 h-3 bg-purple-600 rounded-full"></span>
+        <span className="dice-dot w-3 h-3 bg-purple-600 rounded-full"></span>
+        <span className="dice-dot w-3 h-3 bg-purple-600 rounded-full"></span>
+      </div>
+    </div>
+  );
+};
+
+export default DiceRoller;
