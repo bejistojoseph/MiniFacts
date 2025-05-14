@@ -49,7 +49,7 @@ const RandomHackButton = ({ allHacks }: RandomHackButtonProps) => {
       <DiceRoller onRollComplete={showRandomHack} />
       
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 shadow-lg rounded-xl border border-gray-200 dark:border-gray-800">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               {currentHack?.icon && <span className="text-2xl">{currentHack.icon}</span>} 
@@ -57,7 +57,7 @@ const RandomHackButton = ({ allHacks }: RandomHackButtonProps) => {
             </DialogTitle>
           </DialogHeader>
           
-          <div className="p-4 bg-gray-50 rounded-md">
+          <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-md">
             {currentHack?.description}
           </div>
           

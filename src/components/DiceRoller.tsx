@@ -1,8 +1,9 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dices } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import Dice3D from './Dice3D';
 
 type DiceRollerProps = {
   onRollComplete: () => void;
@@ -11,29 +12,6 @@ type DiceRollerProps = {
 const DiceRoller: React.FC<DiceRollerProps> = ({ onRollComplete }) => {
   const [isRolling, setIsRolling] = useState(false);
   const { toast } = useToast();
-  
-  // Add the CSS keyframes to the document head on component mount
-  useEffect(() => {
-    const styleEl = document.createElement('style');
-    styleEl.textContent = `
-      @keyframes rollDice {
-        0% { transform: rotateX(0deg) rotateY(0deg); }
-        25% { transform: rotateX(90deg) rotateY(45deg); }
-        50% { transform: rotateX(180deg) rotateY(90deg); }
-        75% { transform: rotateX(270deg) rotateY(135deg); }
-        100% { transform: rotateX(360deg) rotateY(180deg); }
-      }
-      
-      .rotate-3d {
-        animation: rollDice 1s ease-in-out infinite;
-      }
-    `;
-    document.head.appendChild(styleEl);
-    
-    return () => {
-      document.head.removeChild(styleEl);
-    };
-  }, []);
   
   const rollDice = () => {
     if (isRolling) return;
@@ -45,21 +23,12 @@ const DiceRoller: React.FC<DiceRollerProps> = ({ onRollComplete }) => {
       duration: 2000,
     });
     
-    // Play rolling animation
-    const diceElements = document.querySelectorAll('.dice-dot');
-    diceElements.forEach(el => {
-      el.classList.add('animate-pulse');
-    });
-    
-    // Simulate dice roll with a delay
-    setTimeout(() => {
-      setIsRolling(false);
-      // Stop animation
-      diceElements.forEach(el => {
-        el.classList.remove('animate-pulse');
-      });
-      onRollComplete();
-    }, 2000);
+    // The 3D dice component will handle the animation and call onRollComplete when done
+  };
+  
+  const handleRollComplete = () => {
+    setIsRolling(false);
+    onRollComplete();
   };
   
   return (
@@ -76,22 +45,9 @@ const DiceRoller: React.FC<DiceRollerProps> = ({ onRollComplete }) => {
         <span>Roll for a Life Hack</span>
       </Button>
       
-      {/* Visual dice representation */}
-      <div 
-        className={`mt-4 grid grid-cols-3 gap-1 p-2 bg-white rounded-lg shadow-inner w-16 h-16 
-        ${isRolling ? 'animate-bounce rotate-3d' : ''}`}
-        style={{
-          perspective: '500px',
-          transformStyle: 'preserve-3d',
-          animation: isRolling ? 'rollDice 1s ease-in-out infinite' : 'none'
-        }}
-      >
-        <span className="dice-dot w-3 h-3 bg-purple-600 rounded-full"></span>
-        <span className="dice-dot w-3 h-3 bg-purple-600 rounded-full"></span>
-        <span className="dice-dot w-3 h-3 bg-purple-600 rounded-full"></span>
-        <span className="dice-dot w-3 h-3 bg-purple-600 rounded-full"></span>
-        <span className="dice-dot w-3 h-3 bg-purple-600 rounded-full"></span>
-        <span className="dice-dot w-3 h-3 bg-purple-600 rounded-full"></span>
+      {/* 3D dice component */}
+      <div className={`mt-6 transition-opacity duration-300 ${isRolling ? 'opacity-100' : 'opacity-70'}`}>
+        <Dice3D isRolling={isRolling} onRollComplete={handleRollComplete} />
       </div>
     </div>
   );
