@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -10,7 +9,8 @@ import {
   Globe, 
   Laptop,
   Shield,
-  Share2
+  Share2,
+  Sparkles
 } from 'lucide-react';
 
 // Tech tips data organized by categories
@@ -113,6 +113,24 @@ const techTipsData = {
       title: 'Scan Documents with Notes app',
       description: 'iPhone: New Note → Camera icon → Scan.',
       icon: '📝'
+    },
+    {
+      id: 's10',
+      title: 'Fix a Wet Phone',
+      description: 'Bury in uncooked rice or use silica gel packs.',
+      icon: '💦'
+    },
+    {
+      id: 's11',
+      title: 'Type Hands-Free on iPhone',
+      description: 'Enable "Hey Siri, type this…"',
+      icon: '🗣️'
+    },
+    {
+      id: 's12',
+      title: 'Android Secret Menu',
+      description: 'Dial *#*#4636#*#* for testing tools.',
+      icon: '🔧'
     }
   ],
   browserInternet: [
@@ -201,6 +219,48 @@ const techTipsData = {
       title: 'Spotify Sleep Timer',
       description: 'Play song → Tap ⏱️ (Android) or "…" → Sleep Timer (iOS).',
       icon: '🎵'
+    },
+    {
+      id: 'ss7',
+      title: 'Laptop as Second Monitor',
+      description: 'Use Windows "Projection" or Duet Display.',
+      icon: '🖥️'
+    },
+    {
+      id: 'ss8',
+      title: 'Find Wi-Fi Password on PC',
+      description: 'Open CMD → Type netsh wlan show profile name="NETWORK" key=clear',
+      icon: '🔑'
+    },
+    {
+      id: 'ss9',
+      title: 'Scan Documents with Notes app',
+      description: 'iPhone: New Note → Camera icon → Scan.',
+      icon: '📝'
+    },
+    {
+      id: 'ss10',
+      title: 'Disable YouTube Autoplay',
+      description: 'Click profile → Settings → Autoplay OFF.',
+      icon: '⏹️'
+    },
+    {
+      id: 'ss11',
+      title: 'Google Photos Hack',
+      description: 'Search "receipts" or "license plates" to find old pics.',
+      icon: '🖼️'
+    },
+    {
+      id: 'ss12',
+      title: 'Spotify Sleep Timer',
+      description: 'Play song → Tap ⏱️ (Android) or "…" → Sleep Timer (iOS).',
+      icon: '🎵'
+    },
+    {
+      id: 'ss13',
+      title: 'Quick Split-Screen',
+      description: 'Windows: Windows + Left/Right Arrow | Mac: Drag to screen edges.',
+      icon: '⬅️'
     }
   ],
   privacySecurity: [
@@ -233,6 +293,38 @@ const techTipsData = {
       title: 'Encrypt files for free',
       description: 'Use 7-Zip (Windows) or FileVault (Mac).',
       icon: '🔐'
+    }
+  ],
+  techMyths: [
+    {
+      id: 'tm1',
+      title: 'Do magnets damage phones?',
+      description: 'Modern phones use flash memory that isn\'t affected by magnets. Only very powerful magnets can damage specialized components.',
+      icon: '🧲'
+    },
+    {
+      id: 'tm2',
+      title: 'Closing apps saves battery?',
+      description: 'Usually no! Modern phones optimize background apps. Force-closing can actually use more battery when reopening.',
+      icon: '🔋'
+    },
+    {
+      id: 'tm3',
+      title: 'Private browsing = totally anonymous?',
+      description: 'Not quite. Your ISP and network admin can still see your activity. Only hides local browsing history.',
+      icon: '🕵️'
+    },
+    {
+      id: 'tm4',
+      title: 'More megapixels = better camera?',
+      description: 'Not necessarily. Sensor size and lens quality are often more important for image quality.',
+      icon: '📸'
+    },
+    {
+      id: 'tm5',
+      title: 'Full discharge extends battery life?',
+      description: 'Modern lithium-ion batteries last longest when kept between 20-80% charge.',
+      icon: '⚡'
     }
   ]
 };
@@ -286,6 +378,14 @@ const categories = [
     color: 'text-red-500',
     bgColor: 'bg-red-50',
     borderColor: 'border-red-100'
+  },
+  { 
+    id: 'techMyths', 
+    name: 'Tech Myth Busters', 
+    icon: <Sparkles className="w-6 h-6" />, 
+    color: 'text-pink-500',
+    bgColor: 'bg-pink-50',
+    borderColor: 'border-pink-100'
   }
 ];
 
