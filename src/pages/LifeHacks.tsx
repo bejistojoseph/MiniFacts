@@ -47,6 +47,72 @@ const lifehacksData = {
       title: 'Easy Ginger Peeling',
       description: 'Peel ginger easily with a spoon—the skin scrapes right off!',
       icon: '🥄'
+    },
+    {
+      id: 'k6',
+      title: 'Stop Crying While Cutting Onions',
+      description: 'Chew gum or refrigerate onions for 30 mins first.',
+      icon: '🧅'
+    },
+    {
+      id: 'k7',
+      title: 'Quickly Chill Drinks',
+      description: 'Wrap in a wet paper towel & freeze for 8 mins.',
+      icon: '🧊'
+    },
+    {
+      id: 'k8',
+      title: 'Unclog Salt Shakers',
+      description: 'Add a few grains of rice to absorb moisture.',
+      icon: '🧂'
+    },
+    {
+      id: 'k9',
+      title: 'Peel Boiled Eggs Easily',
+      description: 'Add 1 tsp baking soda to boiling water.',
+      icon: '🥚'
+    },
+    {
+      id: 'k10',
+      title: 'Keep Cake Fresh',
+      description: 'Store with a slice of bread (the cake absorbs its moisture).',
+      icon: '🍰'
+    },
+    {
+      id: 'k11',
+      title: 'Revive Wilted Greens',
+      description: 'Soak in ice water for 15 mins.',
+      icon: '🥬'
+    },
+    {
+      id: 'k12',
+      title: 'Grate Butter Easily',
+      description: 'Freeze for 10 mins first.',
+      icon: '🧈'
+    },
+    {
+      id: 'k13',
+      title: 'Prevent Pasta Boil-overs',
+      description: 'Lay a wooden spoon across the pot.',
+      icon: '🍝'
+    },
+    {
+      id: 'k14',
+      title: 'Microwave Two Plates at Once',
+      description: 'Place a mug upside down between them.',
+      icon: '🍽️'
+    },
+    {
+      id: 'k15',
+      title: 'DIY Buttermilk',
+      description: 'Mix 1 cup milk + 1 tbsp lemon juice/vinegar.',
+      icon: '🥛'
+    },
+    {
+      id: 'k16',
+      title: 'Too Salty? Add a Potato',
+      description: 'A raw potato can absorb excess salt from soups and stews.',
+      icon: '🥔'
     }
   ],
   home: [
@@ -79,6 +145,66 @@ const lifehacksData = {
       title: 'Coffee Filter Screen Cleaner',
       description: "Use a coffee filter to clean TV screens—it's lint-free and gentle.",
       icon: '📺'
+    },
+    {
+      id: 'h6',
+      title: 'Store Winter Clothes with Vacuum Bags',
+      description: 'Saves 75% space.',
+      icon: '👕'
+    },
+    {
+      id: 'h7',
+      title: 'Label Cords with Washi Tape',
+      description: 'Write on it & wrap around wires.',
+      icon: '📏'
+    },
+    {
+      id: 'h8',
+      title: 'Hang Brooms/Mops with Bike Hooks',
+      description: 'Frees up floor space.',
+      icon: '🧹'
+    },
+    {
+      id: 'h9',
+      title: 'Use a Pegboard for Tools',
+      description: 'Customizable & visible storage.',
+      icon: '🔨'
+    },
+    {
+      id: 'h10',
+      title: 'Fold Fitted Sheets',
+      description: 'Tuck corners into each other (YouTube it!).',
+      icon: '🧺'
+    },
+    {
+      id: 'h11',
+      title: 'Organize Jewelry in Ice Cube Trays',
+      description: 'Perfect for small items.',
+      icon: '💍'
+    },
+    {
+      id: 'h12',
+      title: 'Repurpose Soda Tabs',
+      description: 'Hang multiple hangers in closets.',
+      icon: '👚'
+    },
+    {
+      id: 'h13',
+      title: 'Store Batteries in Pill Organizers',
+      description: 'Prevents contact & chaos.',
+      icon: '🔋'
+    },
+    {
+      id: 'h14',
+      title: 'Use Tension Rods in Cabinets',
+      description: 'Creates extra shelving.',
+      icon: '🪑'
+    },
+    {
+      id: 'h15',
+      title: 'Keep Paint Info on Lids',
+      description: 'Tape a sample swatch + color code.',
+      icon: '🎨'
     }
   ],
   tech: [
@@ -143,6 +269,66 @@ const lifehacksData = {
       title: 'Repurpose Old Socks',
       description: 'Use old socks as dusting mitts or pet toys.',
       icon: '🧦'
+    },
+    {
+      id: 'm6',
+      title: 'Library Perks',
+      description: 'Free ebooks, movies, even museum passes!',
+      icon: '📚'
+    },
+    {
+      id: 'm7',
+      title: 'Price-match Guarantees',
+      description: "Many stores honor competitors' prices.",
+      icon: '💰'
+    },
+    {
+      id: 'm8',
+      title: 'DIY Cleaning Wipes',
+      description: 'Soap + water + paper towels in a jar.',
+      icon: '🧽'
+    },
+    {
+      id: 'm9',
+      title: 'Grocery Shop After Eating',
+      description: 'Reduces impulse buys by 30%.',
+      icon: '🛒'
+    },
+    {
+      id: 'm10',
+      title: 'Use Cashback Apps',
+      description: 'Rakuten, Honey, or Ibotta.',
+      icon: '📱'
+    },
+    {
+      id: 'm11',
+      title: 'Repurpose Pickle Juice',
+      description: 'Makes great marinades or salad dressings.',
+      icon: '🥒'
+    },
+    {
+      id: 'm12',
+      title: 'Freeze Leftover Coffee',
+      description: 'Use as iced coffee cubes later.',
+      icon: '☕'
+    },
+    {
+      id: 'm13',
+      title: 'Buy Holiday Decor Post-Holiday',
+      description: '70-90% discounts.',
+      icon: '🎄'
+    },
+    {
+      id: 'm14',
+      title: 'Cancel Unused Subscriptions',
+      description: 'Track with Truebill or Rocket Money.',
+      icon: '📝'
+    },
+    {
+      id: 'm15',
+      title: 'Grow Green Onions in Water',
+      description: 'Regrows 3-4 times!',
+      icon: '🌱'
     }
   ],
   travel: [
@@ -175,6 +361,66 @@ const lifehacksData = {
       title: 'Natural Wake-Up Trick',
       description: 'Drink water before bed to naturally wake up earlier without an alarm.',
       icon: '💧'
+    },
+    {
+      id: 'tr6',
+      title: 'Roll Clothes + Packing Cubes',
+      description: 'Fits 2x more in luggage.',
+      icon: '🧳'
+    },
+    {
+      id: 'tr7',
+      title: 'Google Maps Offline with "OK Maps"',
+      description: 'Type "OK maps" in search bar to save areas.',
+      icon: '🌎'
+    },
+    {
+      id: 'tr8',
+      title: 'Hotels vs. Airbnb',
+      description: 'Always compare total costs (hidden fees add up!).',
+      icon: '🏨'
+    },
+    {
+      id: 'tr9',
+      title: 'TSA-approved Liquids Hack',
+      description: 'Use contact lens cases for creams.',
+      icon: '💧'
+    },
+    {
+      id: 'tr10',
+      title: 'Charge Devices Faster',
+      description: 'Use a wall outlet, not USB ports.',
+      icon: '🔌'
+    },
+    {
+      id: 'tr11',
+      title: 'The "5-minute Rule"',
+      description: 'Overcome procrastination by starting tiny tasks.',
+      icon: '⏰'
+    },
+    {
+      id: 'tr12',
+      title: 'Email Templates',
+      description: 'Save common responses in Gmail "Canned Responses".',
+      icon: '📧'
+    },
+    {
+      id: 'tr13',
+      title: 'Focus Hack',
+      description: 'Wear headphones (even without music) to avoid interruptions.',
+      icon: '🎧'
+    },
+    {
+      id: 'tr14',
+      title: 'Airplane Seat Sanitizing',
+      description: 'Wipe tray tables, armrests, and vents.',
+      icon: '✈️'
+    },
+    {
+      id: 'tr15',
+      title: 'Learn Keyboard Shortcuts',
+      description: 'Saves ~8 workdays/year (try ShortcutWorld).',
+      icon: '⌨️'
     }
   ]
 };

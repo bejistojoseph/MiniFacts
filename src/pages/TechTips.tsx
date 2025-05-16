@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -44,6 +45,18 @@ const techTipsData = {
       title: 'Instantly lock your PC',
       description: 'Windows + L (great for privacy!).',
       icon: '🔒'
+    },
+    {
+      id: 'cl6',
+      title: 'Laptop as Second Monitor',
+      description: 'Use Windows "Projection" or Duet Display.',
+      icon: '🖥️'
+    },
+    {
+      id: 'cl7',
+      title: 'Quick Split-Screen',
+      description: 'Windows: Windows + Left/Right Arrow | Mac: Drag to screen edges.',
+      icon: '⬅️'
     }
   ],
   smartphone: [
@@ -76,6 +89,30 @@ const techTipsData = {
       title: 'Quickly delete typos',
       description: 'Shake your iPhone to undo text (Android: swipe left on Gboard).',
       icon: '⌨️'
+    },
+    {
+      id: 's6',
+      title: 'Fix a Wet Phone',
+      description: 'Bury in uncooked rice or use silica gel packs.',
+      icon: '💦'
+    },
+    {
+      id: 's7',
+      title: 'Type Hands-Free on iPhone',
+      description: 'Enable "Hey Siri, type this…"',
+      icon: '🗣️'
+    },
+    {
+      id: 's8',
+      title: 'Android Secret Menu',
+      description: 'Dial *#*#4636#*#* for testing tools.',
+      icon: '🔧'
+    },
+    {
+      id: 's9',
+      title: 'Scan Documents with Notes app',
+      description: 'iPhone: New Note → Camera icon → Scan.',
+      icon: '📝'
     }
   ],
   browserInternet: [
@@ -108,6 +145,24 @@ const techTipsData = {
       title: 'Find free Wi-Fi anywhere',
       description: 'Use apps like WiFi Map or Google Maps (search "free wifi").',
       icon: '📶'
+    },
+    {
+      id: 'bi6',
+      title: 'Find Wi-Fi Password on PC',
+      description: 'Open CMD → Type netsh wlan show profile name="NETWORK" key=clear',
+      icon: '🔑'
+    },
+    {
+      id: 'bi7',
+      title: 'Disable YouTube Autoplay',
+      description: 'Click profile → Settings → Autoplay OFF.',
+      icon: '⏹️'
+    },
+    {
+      id: 'bi8',
+      title: 'Google Photos Hack',
+      description: 'Search "receipts" or "license plates" to find old pics.',
+      icon: '🖼️'
     }
   ],
   softwareShortcuts: [
@@ -140,6 +195,12 @@ const techTipsData = {
       title: 'Free up storage',
       description: 'Use WinDirStat (Windows) or Disk Utility (Mac) to find large files.',
       icon: '💾'
+    },
+    {
+      id: 'ss6',
+      title: 'Spotify Sleep Timer',
+      description: 'Play song → Tap ⏱️ (Android) or "…" → Sleep Timer (iOS).',
+      icon: '🎵'
     }
   ],
   privacySecurity: [
