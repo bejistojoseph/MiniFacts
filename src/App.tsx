@@ -41,6 +41,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/article/:slug" element={<Article />} />
+              <Route path="/browse" element={<Index />} /> {/* Browse all facts route */}
               <Route path="/minifacts" element={<NotFound />} />
               <Route path="/minifacts/:category" element={<NotFound />} />
               <Route path="/lifehacks" element={<LifeHacks />} />

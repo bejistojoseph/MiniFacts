@@ -1,7 +1,7 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, BookmarkPlus, BookmarkCheck } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
 type FactCardProps = {
@@ -16,12 +16,25 @@ type FactCardProps = {
 
 const FactCard = ({ id, title, description, category, categoryColor, image, slug }: FactCardProps) => {
   const { toast } = useToast();
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   const handleCardClick = () => {
     toast({
       title: `${category}`,
       description: `Reading about "${title.substring(0, 30)}..."`,
       duration: 3000,
+    });
+  };
+
+  const handleBookmark = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsBookmarked(prev => !prev);
+    
+    toast({
+      title: isBookmarked ? "Removed from bookmarks" : "Added to bookmarks",
+      description: `"${title.substring(0, 30)}..."`,
+      duration: 2000,
     });
   };
 
@@ -36,6 +49,15 @@ const FactCard = ({ id, title, description, category, categoryColor, image, slug
         <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium ${categoryColor}`}>
           {category}
         </div>
+        <button 
+          onClick={handleBookmark}
+          className="absolute top-4 right-4 p-1.5 bg-white/90 rounded-full hover:bg-white transition-colors"
+        >
+          {isBookmarked ? 
+            <BookmarkCheck size={16} className="text-teal-600" /> : 
+            <BookmarkPlus size={16} className="text-gray-600" />
+          }
+        </button>
       </div>
       
       <div className="p-5 flex flex-col flex-grow">

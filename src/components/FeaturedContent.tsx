@@ -1,9 +1,10 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import FactCard from './FactCard';
 import { useToast } from '@/components/ui/use-toast';
 import { Link } from 'react-router-dom';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 // Sample data (in a real app, this would come from an API or database)
 const featuredFacts = [
@@ -63,17 +64,321 @@ const featuredFacts = [
   }
 ];
 
+// New amazing facts from different categories
+const amazingFacts = {
+  nature: [
+    {
+      id: 'n1',
+      title: 'A single lightning bolt contains enough energy to toast 100,000 slices of bread',
+      description: 'Lightning strikes are powerful electrical discharges that contain enormous amounts of energy - enough to power a household for weeks or toast thousands of slices of bread instantly.',
+      category: 'Nature & Science',
+      categoryColor: 'bg-green-100 text-green-600',
+      image: 'https://images.unsplash.com/photo-1461511669078-d46bf351cd6e',
+      slug: 'lightning-energy-fact'
+    },
+    {
+      id: 'n2',
+      title: 'Octopuses have three hearts, nine brains, and blue blood',
+      description: 'Octopuses are among the most fascinating creatures on Earth. They have one main brain and a mini-brain in each arm, three hearts that pump blue blood containing copper rather than iron.',
+      category: 'Nature & Science',
+      categoryColor: 'bg-green-100 text-green-600',
+      image: 'https://images.unsplash.com/photo-1545671913-b89ac1b4ac10',
+      slug: 'octopus-anatomy-fact'
+    },
+    {
+      id: 'n3',
+      title: 'Venus is the only planet that spins clockwise',
+      description: 'While most planets in our solar system rotate counterclockwise, Venus rotates clockwise (retrograde rotation). This unique spin may be due to a massive collision in its early history.',
+      category: 'Nature & Science',
+      categoryColor: 'bg-green-100 text-green-600',
+      image: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564',
+      slug: 'venus-rotation-fact'
+    },
+    {
+      id: 'n4',
+      title: 'The smell of rain (petrichor) is caused by bacteria in the soil',
+      description: 'The pleasant earthy smell after rainfall is called petrichor. It comes from an oil produced by certain plants during dry periods, which is then released into the air when it rains.',
+      category: 'Nature & Science',
+      categoryColor: 'bg-green-100 text-green-600',
+      image: 'https://images.unsplash.com/photo-1428592953211-077101b2021b',
+      slug: 'petrichor-fact'
+    },
+    {
+      id: 'n5',
+      title: 'Bananas are berries, but strawberries aren't',
+      description: 'Botanically speaking, bananas are berries (developing from a single flower with one ovary) while strawberries are "aggregate fruits" from a flower with multiple ovaries.',
+      category: 'Nature & Science',
+      categoryColor: 'bg-green-100 text-green-600',
+      image: 'https://images.unsplash.com/photo-1528825871115-3581a5387919',
+      slug: 'banana-berry-fact'
+    },
+  ],
+  animals: [
+    {
+      id: 'a1',
+      title: 'A group of flamingos is called a "flamboyance"',
+      description: 'Collective animal names can be quite creative - flamingos gather in a "flamboyance," which perfectly captures their bright pink color and showy appearance.',
+      category: 'Animal Kingdom',
+      categoryColor: 'bg-amber-100 text-amber-600',
+      image: 'https://images.unsplash.com/photo-1497206365907-f5e630693df0',
+      slug: 'flamingo-flamboyance'
+    },
+    {
+      id: 'a2',
+      title: 'Elephants can smell water from 3 miles away',
+      description: 'Elephants have the strongest sense of smell in the animal kingdom - so powerful they can detect water sources from up to 3 miles away, which is crucial for survival in dry regions.',
+      category: 'Animal Kingdom',
+      categoryColor: 'bg-amber-100 text-amber-600',
+      image: 'https://images.unsplash.com/photo-1557050543-4162f98d6094',
+      slug: 'elephant-smell-fact'
+    },
+    {
+      id: 'a3',
+      title: 'Axolotls can regenerate their brains, spines, and limbs',
+      description: 'These remarkable amphibians can regrow entire lost limbs, parts of their brain, spinal cord, and other body parts. Scientists study axolotls to better understand regenerative medicine.',
+      category: 'Animal Kingdom',
+      categoryColor: 'bg-amber-100 text-amber-600',
+      image: 'https://images.unsplash.com/photo-1591825729269-caeb344f6df2',
+      slug: 'axolotl-regeneration'
+    },
+    {
+      id: 'a4',
+      title: 'Crows hold grudges and teach other crows to dislike humans who wronged them',
+      description: 'Crows not only remember people who have threatened them, but they also communicate these threats to other crows. This "cultural transmission" of information can last for generations.',
+      category: 'Animal Kingdom',
+      categoryColor: 'bg-amber-100 text-amber-600',
+      image: 'https://images.unsplash.com/photo-1567129587055-6c7f8caef2cc',
+      slug: 'crow-grudges'
+    },
+    {
+      id: 'a5',
+      title: 'A blue whale\'s heart is the size of a small car',
+      description: 'The heart of a blue whale can weigh up to 1,500 pounds (680 kg) and be as large as a Volkswagen Beetle. It beats just 8-10 times per minute but can be heard from two miles away.',
+      category: 'Animal Kingdom',
+      categoryColor: 'bg-amber-100 text-amber-600',
+      image: 'https://images.unsplash.com/photo-1568430462989-44163eb1752f',
+      slug: 'blue-whale-heart'
+    },
+  ],
+  human: [
+    {
+      id: 'h1',
+      title: 'Your stomach acid can dissolve metal',
+      description: 'Human stomach acid (hydrochloric acid) is powerful enough to corrode metal, yet your stomach lining regenerates so quickly that it protects itself from this powerful digestive fluid.',
+      category: 'Human Body',
+      categoryColor: 'bg-red-100 text-red-600',
+      image: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7',
+      slug: 'stomach-acid-fact'
+    },
+    {
+      id: 'h2',
+      title: 'Humans glow in the dark (bioluminescence), but it\'s 1,000x weaker than our eyes can see',
+      description: 'The human body emits visible light (bioluminescence) that\'s too faint for the naked eye. This light fluctuates throughout the day, with lowest radiance in the afternoon and highest in the evening.',
+      category: 'Human Body',
+      categoryColor: 'bg-red-100 text-red-600',
+      image: 'https://images.unsplash.com/photo-1607275121309-8b0404494786',
+      slug: 'human-bioluminescence'
+    },
+    {
+      id: 'h3',
+      title: 'Your brain generates enough electricity to power a lightbulb',
+      description: 'The human brain contains approximately 100 billion neurons that use electricity to communicate. Collectively, they generate 10-23 watts of power - enough to power a low-wattage LED light.',
+      category: 'Human Body',
+      categoryColor: 'bg-red-100 text-red-600',
+      image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc',
+      slug: 'brain-electricity'
+    },
+    {
+      id: 'h4',
+      title: 'Babies have 60 more bones than adults',
+      description: 'Newborns have approximately 300 bones, while adults have 206. Many of a baby\'s bones fuse together as they grow, creating stronger, composite bones for adulthood.',
+      category: 'Human Body',
+      categoryColor: 'bg-red-100 text-red-600',
+      image: 'https://images.unsplash.com/photo-1556782031-6882ffb5b3f5',
+      slug: 'baby-bones-fact'
+    },
+    {
+      id: 'h5',
+      title: 'Your nose can remember 50,000 different scents',
+      description: 'The human nose contains roughly 400 types of scent receptors that can detect at least 1 trillion different odors. Our scent memory is remarkably durable and closely linked to emotional memories.',
+      category: 'Human Body',
+      categoryColor: 'bg-red-100 text-red-600',
+      image: 'https://images.unsplash.com/photo-1527201987695-67c06571957e',
+      slug: 'nose-memory-scents'
+    },
+  ],
+  history: [
+    {
+      id: 'hs1',
+      title: 'Cleopatra lived closer to the invention of the iPhone than to the building of the Great Pyramid',
+      description: 'Cleopatra lived around 30 BCE, about 2,500 years after the Great Pyramid was built (2560 BCE) but only 2,050 years before the iPhone was created (2007), demonstrating the vast age of ancient Egyptian civilization.',
+      category: 'History & Culture',
+      categoryColor: 'bg-indigo-100 text-indigo-600',
+      image: 'https://images.unsplash.com/photo-1568322445389-f9b4639bd710',
+      slug: 'cleopatra-iphone-pyramid'
+    },
+    {
+      id: 'hs2',
+      title: 'The shortest war in history was 38 minutes (Britain vs. Zanzibar, 1896)',
+      description: 'The Anglo-Zanzibar War of 1896 started at 9:02 AM and ended at 9:40 AM when Zanzibar surrendered after British ships bombarded the palace. It remains the shortest recorded war in history.',
+      category: 'History & Culture',
+      categoryColor: 'bg-indigo-100 text-indigo-600',
+      image: 'https://images.unsplash.com/photo-1580164631075-b3f1304f4051',
+      slug: 'shortest-war-history'
+    },
+    {
+      id: 'hs3',
+      title: 'Albert Einstein was offered the presidency of Israel',
+      description: 'In 1952, Einstein was offered the position of President of Israel following the death of its first president. Despite being deeply honored, he declined, stating his lack of aptitude for state matters.',
+      category: 'History & Culture',
+      categoryColor: 'bg-indigo-100 text-indigo-600',
+      image: 'https://images.unsplash.com/photo-1621252179027-94459d278660',
+      slug: 'einstein-israel-presidency'
+    },
+    {
+      id: 'hs4',
+      title: 'The first computer "bug" was a real insect',
+      description: 'In 1947, Grace Hopper found a moth causing problems in Harvard\'s Mark II computer. After removing it, she taped it in the logbook with the note "first actual case of bug being found" - originating the term "debugging."',
+      category: 'History & Culture',
+      categoryColor: 'bg-indigo-100 text-indigo-600',
+      image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97',
+      slug: 'first-computer-bug'
+    },
+    {
+      id: 'hs5',
+      title: 'Before alarm clocks, there were "knocker-uppers"',
+      description: 'During the Industrial Revolution, professional "knocker-uppers" would tap on clients\' windows with long sticks or shoot peas at their windows to wake them up for work, before alarm clocks became affordable.',
+      category: 'History & Culture',
+      categoryColor: 'bg-indigo-100 text-indigo-600',
+      image: 'https://images.unsplash.com/photo-1501139083538-0139583c060f',
+      slug: 'knocker-uppers-history'
+    },
+  ],
+  space: [
+    {
+      id: 'sp1',
+      title: 'There\'s a planet made of diamond',
+      description: '55 Cancri e, a planet orbiting a star 40 light-years away, is believed to have a surface made largely of diamond. It has a mass eight times that of Earth but is twice as dense.',
+      category: 'Space & Technology',
+      categoryColor: 'bg-violet-100 text-violet-600',
+      image: 'https://images.unsplash.com/photo-1454789548928-9efd52dc4031',
+      slug: 'diamond-planet'
+    },
+    {
+      id: 'sp2',
+      title: 'Apollo astronauts\' footprints on the Moon will last 100 million years',
+      description: 'With no atmosphere, wind or water on the Moon to erode them, the footprints left by Apollo astronauts will remain intact for millions of years, only slowly fading from micrometeorite impacts.',
+      category: 'Space & Technology',
+      categoryColor: 'bg-violet-100 text-violet-600',
+      image: 'https://images.unsplash.com/photo-1446776858070-70c3d5ed6758',
+      slug: 'moon-footprints'
+    },
+    {
+      id: 'sp3',
+      title: 'Your smartphone has more computing power than NASA used to land Apollo 11 on the Moon',
+      description: 'The Apollo Guidance Computer that took astronauts to the Moon had less computing power than a modern calculator. Today\'s smartphones are millions of times more powerful.',
+      category: 'Space & Technology',
+      categoryColor: 'bg-violet-100 text-violet-600',
+      image: 'https://images.unsplash.com/photo-1589300380144-2c06e5fa275c',
+      slug: 'smartphone-vs-apollo'
+    },
+    {
+      id: 'sp4',
+      title: 'Astronauts grow 2 inches taller in space',
+      description: 'Without Earth\'s gravity compressing the spine, astronauts experience spinal elongation in space that can make them grow up to 2 inches taller. They return to their normal height when back on Earth.',
+      category: 'Space & Technology',
+      categoryColor: 'bg-violet-100 text-violet-600',
+      image: 'https://images.unsplash.com/photo-1614642264762-d0a3b8bf3700',
+      slug: 'astronaut-height'
+    },
+    {
+      id: 'sp5',
+      title: 'Saturn would float in water',
+      description: 'Saturn has such low density (0.687 g/cm³) that if you could find a bathtub large enough, the planet would actually float in it. Water\'s density is 1 g/cm³, making Saturn the only planet that would float.',
+      category: 'Space & Technology',
+      categoryColor: 'bg-violet-100 text-violet-600',
+      image: 'https://images.unsplash.com/photo-1614732414444-096e5f1122d5',
+      slug: 'saturn-floating'
+    },
+  ],
+  wtf: [
+    {
+      id: 'w1',
+      title: 'McDonald\'s once made bubblegum-flavored broccoli',
+      description: 'In an attempt to create healthier happy meal options that would appeal to kids, McDonald\'s developed bubblegum-flavored broccoli. The product never reached the market after children in taste tests were confused by the conflicting flavors.',
+      category: 'Strange but True',
+      categoryColor: 'bg-pink-100 text-pink-600',
+      image: 'https://images.unsplash.com/photo-1459411621453-7b03977f4bfc',
+      slug: 'mcdonalds-bubblegum-broccoli'
+    },
+    {
+      id: 'w2',
+      title: 'In Japan, you can buy square watermelons',
+      description: 'Japanese farmers grow watermelons in square glass boxes so they\'re easier to stack and store. These decorative luxury items can cost over $100 each and are mainly for display rather than eating.',
+      category: 'Strange but True',
+      categoryColor: 'bg-pink-100 text-pink-600',
+      image: 'https://images.unsplash.com/photo-1563114773-84221bd62daa',
+      slug: 'square-watermelons'
+    },
+    {
+      id: 'w3',
+      title: 'The "dot" over an "i" is called a tittle',
+      description: 'The small dot above lowercase "i" and "j" has a name - it\'s called a "tittle." This linguistic term comes from Latin and was used as far back as the 11th century.',
+      category: 'Strange but True',
+      categoryColor: 'bg-pink-100 text-pink-600',
+      image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a',
+      slug: 'tittle-dot-i'
+    },
+    {
+      id: 'w4',
+      title: 'The longest wedding veil was longer than 63 football fields',
+      description: 'The longest wedding veil, worn by a bride in Cyprus in 2018, measured 22,843 feet (6,962.6 meters) - longer than 63 football fields placed end-to-end or the height of Mount Everest if stood vertically.',
+      category: 'Strange but True',
+      categoryColor: 'bg-pink-100 text-pink-600',
+      image: 'https://images.unsplash.com/photo-1525184782196-8e2ded604bf7',
+      slug: 'longest-wedding-veil'
+    },
+    {
+      id: 'w5',
+      title: 'Sweden has a "chocolate boy" tradition',
+      description: 'During Easter in Sweden, children dress up as "Påskkärring" (Easter witches) or "Chokladpojken" (chocolate boys), going door to door handing out decorated letters and receiving candy in return.',
+      category: 'Strange but True',
+      categoryColor: 'bg-pink-100 text-pink-600',
+      image: 'https://images.unsplash.com/photo-1511381939415-e44015466834',
+      slug: 'sweden-chocolate-boy'
+    },
+  ],
+};
+
 const FeaturedContent = () => {
   const { toast } = useToast();
+  const [activeCategory, setActiveCategory] = useState<string>("featured");
+
+  // Combine all amazing facts into one array for the "All Facts" tab
+  const allAmazingFacts = [
+    ...amazingFacts.nature,
+    ...amazingFacts.animals,
+    ...amazingFacts.human,
+    ...amazingFacts.history,
+    ...amazingFacts.space,
+    ...amazingFacts.wtf
+  ];
+
+  // Get facts based on active category
+  const getDisplayedFacts = () => {
+    if (activeCategory === "featured") return featuredFacts;
+    if (activeCategory === "all") return allAmazingFacts;
+    return amazingFacts[activeCategory as keyof typeof amazingFacts] || [];
+  };
 
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div>
-            <h2 className="text-3xl font-display font-bold text-gray-900 mb-2">Featured Content</h2>
+            <h2 className="text-3xl font-display font-bold text-gray-900 mb-2">Amazing Facts</h2>
             <p className="text-gray-600">
-              Explore our most popular facts and lifehacks
+              Explore fascinating facts about our world and beyond
             </p>
           </div>
           <div className="mt-4 md:mt-0 flex gap-2">
@@ -94,11 +399,130 @@ const FeaturedContent = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredFacts.map((fact) => (
-            <FactCard key={fact.id} {...fact} />
-          ))}
-        </div>
+        <Tabs defaultValue="featured" className="mb-8">
+          <TabsList className="flex flex-wrap mb-6 gap-2">
+            <TabsTrigger
+              value="featured"
+              onClick={() => setActiveCategory("featured")} 
+              className="data-[state=active]:bg-purple-100 data-[state=active]:text-purple-600 data-[state=active]:shadow-none"
+            >
+              Featured
+            </TabsTrigger>
+            <TabsTrigger
+              value="nature"
+              onClick={() => setActiveCategory("nature")} 
+              className="data-[state=active]:bg-green-100 data-[state=active]:text-green-600 data-[state=active]:shadow-none"
+            >
+              Nature & Science
+            </TabsTrigger>
+            <TabsTrigger
+              value="animals"
+              onClick={() => setActiveCategory("animals")} 
+              className="data-[state=active]:bg-amber-100 data-[state=active]:text-amber-600 data-[state=active]:shadow-none"
+            >
+              Animal Kingdom
+            </TabsTrigger>
+            <TabsTrigger
+              value="human"
+              onClick={() => setActiveCategory("human")} 
+              className="data-[state=active]:bg-red-100 data-[state=active]:text-red-600 data-[state=active]:shadow-none"
+            >
+              Human Body
+            </TabsTrigger>
+            <TabsTrigger
+              value="history"
+              onClick={() => setActiveCategory("history")} 
+              className="data-[state=active]:bg-indigo-100 data-[state=active]:text-indigo-600 data-[state=active]:shadow-none"
+            >
+              History & Culture
+            </TabsTrigger>
+            <TabsTrigger
+              value="space"
+              onClick={() => setActiveCategory("space")} 
+              className="data-[state=active]:bg-violet-100 data-[state=active]:text-violet-600 data-[state=active]:shadow-none"
+            >
+              Space & Tech
+            </TabsTrigger>
+            <TabsTrigger
+              value="wtf"
+              onClick={() => setActiveCategory("wtf")} 
+              className="data-[state=active]:bg-pink-100 data-[state=active]:text-pink-600 data-[state=active]:shadow-none"
+            >
+              Strange Facts
+            </TabsTrigger>
+            <TabsTrigger
+              value="all"
+              onClick={() => setActiveCategory("all")} 
+              className="data-[state=active]:bg-gray-100 data-[state=active]:text-gray-600 data-[state=active]:shadow-none"
+            >
+              All Facts
+            </TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="featured" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getDisplayedFacts().map((fact) => (
+                <FactCard key={fact.id} {...fact} />
+              ))}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="nature" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getDisplayedFacts().map((fact) => (
+                <FactCard key={fact.id} {...fact} />
+              ))}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="animals" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getDisplayedFacts().map((fact) => (
+                <FactCard key={fact.id} {...fact} />
+              ))}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="human" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getDisplayedFacts().map((fact) => (
+                <FactCard key={fact.id} {...fact} />
+              ))}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="history" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getDisplayedFacts().map((fact) => (
+                <FactCard key={fact.id} {...fact} />
+              ))}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="space" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getDisplayedFacts().map((fact) => (
+                <FactCard key={fact.id} {...fact} />
+              ))}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="wtf" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getDisplayedFacts().map((fact) => (
+                <FactCard key={fact.id} {...fact} />
+              ))}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="all" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getDisplayedFacts().map((fact) => (
+                <FactCard key={fact.id} {...fact} />
+              ))}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   );
