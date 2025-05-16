@@ -105,8 +105,8 @@ const amazingFacts = {
     },
     {
       id: 'n5',
-      title: 'Bananas are berries, but strawberries aren't',
-      description: 'Botanically speaking, bananas are berries (developing from a single flower with one ovary) while strawberries are "aggregate fruits" from a flower with multiple ovaries.',
+      title: "Bananas are berries, but strawberries aren't",
+      description: "Botanically speaking, bananas are berries (developing from a single flower with one ovary) while strawberries are \"aggregate fruits\" from a flower with multiple ovaries.",
       category: 'Nature & Science',
       categoryColor: 'bg-green-100 text-green-600',
       image: 'https://images.unsplash.com/photo-1528825871115-3581a5387919',
