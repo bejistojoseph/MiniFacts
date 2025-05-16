@@ -9,17 +9,7 @@ const Hero = () => {
   const { toast } = useToast();
 
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: "url('/lovable-uploads/7f4a2bac-a313-49ee-94f9-b241ecfaf4df.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
-      
+    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-purple-900 to-blue-900">
       {/* Animated spheres */}
       <div className="absolute inset-0 z-0">
         <div className="sphere sphere-1"></div>
