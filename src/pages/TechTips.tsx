@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -10,8 +11,11 @@ import {
   Laptop,
   Shield,
   Share2,
-  Sparkles
+  Sparkles,
+  Search
 } from 'lucide-react';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import TechProcessor from '@/components/TechProcessor';
 
 // Tech tips data organized by categories
 const techTipsData = {
@@ -392,6 +396,9 @@ const categories = [
 const TechTips = () => {
   const { toast } = useToast();
   const [activeCategory, setActiveCategory] = useState('computerLaptop');
+  const [processingOpen, setProcessingOpen] = useState(false);
+  const [processingComplete, setProcessingComplete] = useState(false);
+  const [selectedTip, setSelectedTip] = useState(null);
 
   const handleCategoryChange = (categoryId) => {
     setActiveCategory(categoryId);
@@ -402,21 +409,18 @@ const TechTips = () => {
     });
   };
 
-  const showRandomTip = () => {
-    const allTips = getAllTips();
-    const randomIndex = Math.floor(Math.random() * allTips.length);
-    const randomTip = allTips[randomIndex];
-
-    toast({
-      title: randomTip.title,
-      description: (
-        <div className="flex items-start gap-2">
-          <span className="text-xl">{randomTip.icon}</span>
-          <span>{randomTip.description}</span>
-        </div>
-      ),
-      duration: 5000,
-    });
+  const handleProcessTips = () => {
+    // Open the processing dialog
+    setProcessingComplete(false);
+    setProcessingOpen(true);
+    
+    // After processing is complete (simulated with timeout)
+    setTimeout(() => {
+      const allTips = getAllTips();
+      const randomIndex = Math.floor(Math.random() * allTips.length);
+      setSelectedTip(allTips[randomIndex]);
+      setProcessingComplete(true);
+    }, 3000); // 3 seconds processing time
   };
 
   const handleShare = (tip) => {
@@ -480,11 +484,12 @@ const TechTips = () => {
               
               <div className="flex justify-center">
                 <Button 
-                  onClick={showRandomTip}
+                  onClick={handleProcessTips}
                   className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white shadow-md hover:shadow-lg transition-all group"
                   size="lg"
                 >
-                  Show Random Tech Tip
+                  <Search className="mr-2 h-5 w-5" />
+                  Find a Tech Tip
                 </Button>
               </div>
             </div>
@@ -548,6 +553,35 @@ const TechTips = () => {
         </section>
       </main>
       <Footer />
+
+      {/* 3D Processing Animation Dialog */}
+      <Dialog open={processingOpen} onOpenChange={setProcessingOpen}>
+        <DialogContent className="sm:max-w-md">
+          <div className="p-4 text-center">
+            {!processingComplete ? (
+              <>
+                <h3 className="text-lg font-medium mb-4">Processing Tech Database...</h3>
+                <TechProcessor />
+              </>
+            ) : (
+              selectedTip && (
+                <div className="p-6 bg-blue-50 rounded-lg border border-blue-100">
+                  <div className="text-3xl mb-3">{selectedTip.icon}</div>
+                  <h3 className="text-xl font-semibold mb-3 text-blue-600">{selectedTip.title}</h3>
+                  <p className="text-gray-700 mb-4">{selectedTip.description}</p>
+                  <Button 
+                    onClick={() => setProcessingOpen(false)}
+                    variant="outline"
+                    className="mt-2"
+                  >
+                    Close
+                  </Button>
+                </div>
+              )
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
