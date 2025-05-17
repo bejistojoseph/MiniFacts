@@ -20,8 +20,9 @@ const FloatingCube: React.FC<FloatingObjectProps> = ({ position, color, speed, s
     mesh.current.rotation.x += 0.01 * speed;
     mesh.current.rotation.y += 0.015 * speed;
     
-    // Add a slight floating motion
-    mesh.current.position.y += Math.sin(Date.now() * 0.001 * speed) * 0.002;
+    // Add a slight floating motion with a safer approach
+    const time = Date.now() * 0.001 * speed;
+    mesh.current.position.y = position[1] + Math.sin(time) * 0.1;
   });
   
   return (
@@ -44,8 +45,9 @@ const FloatingSphere: React.FC<FloatingObjectProps> = ({ position, color, speed,
     mesh.current.rotation.x += 0.005 * speed;
     mesh.current.rotation.z += 0.01 * speed;
     
-    // Add a slight floating motion
-    mesh.current.position.y += Math.sin(Date.now() * 0.001 * speed) * 0.003;
+    // Add a slight floating motion with a safer approach
+    const time = Date.now() * 0.001 * speed;
+    mesh.current.position.y = position[1] + Math.sin(time) * 0.1;
   });
   
   return (
@@ -68,8 +70,9 @@ const FloatingTorus: React.FC<FloatingObjectProps> = ({ position, color, speed, 
     mesh.current.rotation.x += 0.01 * speed;
     mesh.current.rotation.y += 0.005 * speed;
     
-    // Add a slight floating motion
-    mesh.current.position.y += Math.sin(Date.now() * 0.001 * speed) * 0.002;
+    // Add a slight floating motion with a safer approach
+    const time = Date.now() * 0.001 * speed;
+    mesh.current.position.y = position[1] + Math.sin(time) * 0.1;
   });
   
   return (
@@ -113,48 +116,50 @@ const ProcessorCore: React.FC = () => {
 };
 
 const DataParticles: React.FC = () => {
-  const particles = useRef<THREE.Points>(null);
-  const [positions, setPositions] = useState<Float32Array | null>(null);
+  const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);
+  const points = useRef<THREE.Points>(null);
   
   useEffect(() => {
+    const bufferGeometry = new THREE.BufferGeometry();
+    
     // Create random particles around the center
     const count = 300;
-    const positionsArray = new Float32Array(count * 3);
+    const positions = new Float32Array(count * 3);
     
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
-      positionsArray[i3] = (Math.random() - 0.5) * 8;
-      positionsArray[i3 + 1] = (Math.random() - 0.5) * 8;
-      positionsArray[i3 + 2] = (Math.random() - 0.5) * 8;
+      positions[i3] = (Math.random() - 0.5) * 8;
+      positions[i3 + 1] = (Math.random() - 0.5) * 8;
+      positions[i3 + 2] = (Math.random() - 0.5) * 8;
     }
     
-    setPositions(positionsArray);
+    bufferGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    setGeometry(bufferGeometry);
   }, []);
   
   useFrame(() => {
-    if (!particles.current) return;
-    particles.current.rotation.y += 0.001;
+    if (!points.current) return;
+    points.current.rotation.y += 0.001;
   });
   
-  return positions ? (
-    <points ref={particles}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={positions.length / 3}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
+  if (!geometry) return null;
+  
+  return (
+    <points ref={points}>
+      <primitive object={geometry} />
       <pointsMaterial size={0.05} color="#a0aec0" />
     </points>
-  ) : null;
+  );
 };
 
+// This component avoids direct canvas manipulation and provides a more stable animation
 const TechProcessor: React.FC = () => {
   return (
     <div className="w-full h-60 sm:h-80">
-      <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
+      <Canvas
+        camera={{ position: [0, 0, 8], fov: 50 }}
+        gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
+      >
         <ambientLight intensity={0.4} />
         <pointLight position={[10, 10, 10]} intensity={0.8} />
         
@@ -164,7 +169,7 @@ const TechProcessor: React.FC = () => {
         {/* Data particles */}
         <DataParticles />
         
-        {/* Floating elements */}
+        {/* Floating elements with explicit position typing */}
         <FloatingCube position={[-2.5, 1.5, 0]} color="#3182ce" speed={1.2} size={0.5} />
         <FloatingCube position={[2.8, -1.2, 0]} color="#805ad5" speed={0.8} size={0.4} />
         <FloatingCube position={[0, 2.3, -1]} color="#38b2ac" speed={1} size={0.3} />
