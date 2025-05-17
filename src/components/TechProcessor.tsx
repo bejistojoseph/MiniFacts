@@ -4,8 +4,15 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Box, Sphere, Torus, RoundedBox } from '@react-three/drei';
 import * as THREE from 'three';
 
-const FloatingCube = ({ position, color, speed, size }) => {
-  const mesh = useRef<THREE.Mesh>();
+interface FloatingObjectProps {
+  position: [number, number, number];
+  color: string;
+  speed: number;
+  size: number;
+}
+
+const FloatingCube: React.FC<FloatingObjectProps> = ({ position, color, speed, size }) => {
+  const mesh = useRef<THREE.Mesh>(null);
   
   useFrame(() => {
     if (!mesh.current) return;
@@ -28,8 +35,8 @@ const FloatingCube = ({ position, color, speed, size }) => {
   );
 };
 
-const FloatingSphere = ({ position, color, speed, size }) => {
-  const mesh = useRef<THREE.Mesh>();
+const FloatingSphere: React.FC<FloatingObjectProps> = ({ position, color, speed, size }) => {
+  const mesh = useRef<THREE.Mesh>(null);
   
   useFrame(() => {
     if (!mesh.current) return;
@@ -52,8 +59,8 @@ const FloatingSphere = ({ position, color, speed, size }) => {
   );
 };
 
-const FloatingTorus = ({ position, color, speed, size }) => {
-  const mesh = useRef<THREE.Mesh>();
+const FloatingTorus: React.FC<FloatingObjectProps> = ({ position, color, speed, size }) => {
+  const mesh = useRef<THREE.Mesh>(null);
   
   useFrame(() => {
     if (!mesh.current) return;
@@ -76,8 +83,8 @@ const FloatingTorus = ({ position, color, speed, size }) => {
   );
 };
 
-const ProcessorCore = () => {
-  const group = useRef<THREE.Group>();
+const ProcessorCore: React.FC = () => {
+  const group = useRef<THREE.Group>(null);
   
   useFrame(() => {
     if (!group.current) return;
@@ -105,23 +112,23 @@ const ProcessorCore = () => {
   );
 };
 
-const DataParticles = () => {
-  const particles = useRef<THREE.Points>();
-  const [positions, setPositions] = useState<Float32Array>();
+const DataParticles: React.FC = () => {
+  const particles = useRef<THREE.Points>(null);
+  const [positions, setPositions] = useState<Float32Array | null>(null);
   
   useEffect(() => {
     // Create random particles around the center
     const count = 300;
-    const positions = new Float32Array(count * 3);
+    const positionsArray = new Float32Array(count * 3);
     
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
-      positions[i3] = (Math.random() - 0.5) * 8;
-      positions[i3 + 1] = (Math.random() - 0.5) * 8;
-      positions[i3 + 2] = (Math.random() - 0.5) * 8;
+      positionsArray[i3] = (Math.random() - 0.5) * 8;
+      positionsArray[i3 + 1] = (Math.random() - 0.5) * 8;
+      positionsArray[i3 + 2] = (Math.random() - 0.5) * 8;
     }
     
-    setPositions(positions);
+    setPositions(positionsArray);
   }, []);
   
   useFrame(() => {
