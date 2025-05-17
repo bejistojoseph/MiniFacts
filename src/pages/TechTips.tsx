@@ -554,7 +554,7 @@ const TechTips = () => {
       </main>
       <Footer />
 
-      {/* 3D Processing Animation Dialog */}
+      {/* Processing Animation Dialog */}
       <Dialog open={processingOpen} onOpenChange={setProcessingOpen}>
         <DialogContent className="sm:max-w-md">
           <div className="p-4 text-center">
