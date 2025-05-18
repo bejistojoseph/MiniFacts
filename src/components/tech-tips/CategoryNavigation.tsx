@@ -28,21 +28,24 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({
     <section className="py-8 border-b border-gray-100">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-center gap-3">
-          {categories.map((category) => (
-            <Button
-              key={category.id}
-              variant={activeCategory === category.id ? "default" : "outline"}
-              className={`flex items-center gap-2 ${
-                activeCategory === category.id 
-                  ? `${category.color.replace('text-', 'bg-')} text-white` 
-                  : `${category.borderColor} ${category.color}`
-              }`}
-              onClick={() => handleCategoryChange(category.id)}
-            >
-              {category.icon}
-              <span>{category.name}</span>
-            </Button>
-          ))}
+          {categories.map((category) => {
+            const Icon = category.icon;
+            return (
+              <Button
+                key={category.id}
+                variant={activeCategory === category.id ? "default" : "outline"}
+                className={`flex items-center gap-2 ${
+                  activeCategory === category.id 
+                    ? `${category.color.replace('text-', 'bg-')} text-white` 
+                    : `${category.borderColor} ${category.color}`
+                }`}
+                onClick={() => handleCategoryChange(category.id)}
+              >
+                <Icon className="w-5 h-5" />
+                <span>{category.name}</span>
+              </Button>
+            );
+          })}
         </div>
       </div>
     </section>

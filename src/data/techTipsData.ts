@@ -1,4 +1,3 @@
-
 import { 
   Computer, 
   Smartphone, 
@@ -337,7 +336,7 @@ export const categories = [
   { 
     id: 'computerLaptop', 
     name: 'Computer & Laptop Hacks', 
-    icon: <Laptop className="w-6 h-6" />, 
+    icon: Laptop, 
     color: 'text-blue-500',
     bgColor: 'bg-blue-50',
     borderColor: 'border-blue-100'
@@ -345,7 +344,7 @@ export const categories = [
   { 
     id: 'smartphone', 
     name: 'Smartphone Tricks', 
-    icon: <Smartphone className="w-6 h-6" />, 
+    icon: Smartphone, 
     color: 'text-green-500',
     bgColor: 'bg-green-50',
     borderColor: 'border-green-100'
@@ -353,7 +352,7 @@ export const categories = [
   { 
     id: 'browserInternet', 
     name: 'Browser & Internet Hacks', 
-    icon: <Globe className="w-6 h-6" />, 
+    icon: Globe, 
     color: 'text-amber-500',
     bgColor: 'bg-amber-50',
     borderColor: 'border-amber-100'
@@ -361,7 +360,7 @@ export const categories = [
   { 
     id: 'softwareShortcuts', 
     name: 'Software & Shortcuts', 
-    icon: <Computer className="w-6 h-6" />, 
+    icon: Computer, 
     color: 'text-purple-500',
     bgColor: 'bg-purple-50',
     borderColor: 'border-purple-100'
@@ -369,7 +368,7 @@ export const categories = [
   { 
     id: 'privacySecurity', 
     name: 'Privacy & Security Tips', 
-    icon: <Shield className="w-6 h-6" />, 
+    icon: Shield, 
     color: 'text-red-500',
     bgColor: 'bg-red-50',
     borderColor: 'border-red-100'
@@ -377,7 +376,7 @@ export const categories = [
   { 
     id: 'techMyths', 
     name: 'Tech Myth Busters', 
-    icon: <Sparkles className="w-6 h-6" />, 
+    icon: Sparkles, 
     color: 'text-pink-500',
     bgColor: 'bg-pink-50',
     borderColor: 'border-pink-100'
