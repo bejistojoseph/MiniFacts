@@ -32,6 +32,11 @@ const Header = () => {
     setShowMobileMenu(!showMobileMenu);
   };
 
+  const navigateTo = (path) => {
+    navigate(path);
+    setShowMobileMenu(false);
+  };
+
   return (
     <header className="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -191,37 +196,33 @@ const Header = () => {
       {showMobileMenu && (
         <div className="md:hidden bg-white border-t border-gray-100 py-4 px-4 shadow-md animate-fade-in">
           <nav className="flex flex-col space-y-3">
-            <Link 
-              to="/minifacts" 
-              className="flex items-center p-2 rounded-md hover:bg-gray-50"
-              onClick={() => setShowMobileMenu(false)}
+            <div 
+              className="flex items-center p-2 rounded-md hover:bg-gray-50 cursor-pointer"
+              onClick={() => navigateTo('/minifacts')}
             >
               <Lightbulb className="mr-3 text-purple-500" size={18} />
               <span>Amazing Facts</span>
-            </Link>
-            <Link 
-              to="/lifehacks" 
-              className="flex items-center p-2 rounded-md hover:bg-gray-50"
-              onClick={() => setShowMobileMenu(false)}
+            </div>
+            <div 
+              className="flex items-center p-2 rounded-md hover:bg-gray-50 cursor-pointer"
+              onClick={() => navigateTo('/lifehacks')}
             >
               <Zap className="mr-3 text-teal-500" size={18} />
               <span>Life Hacks</span>
-            </Link>
-            <Link 
-              to="/techtips" 
-              className="flex items-center p-2 rounded-md hover:bg-gray-50"
-              onClick={() => setShowMobileMenu(false)}
+            </div>
+            <div 
+              className="flex items-center p-2 rounded-md hover:bg-gray-50 cursor-pointer"
+              onClick={() => navigateTo('/techtips')}
             >
               <Cpu className="mr-3 text-blue-500" size={18} />
               <span>Tech Tips</span>
-            </Link>
-            <Link 
-              to="/submit" 
-              className="flex items-center p-2 rounded-md hover:bg-gray-50"
-              onClick={() => setShowMobileMenu(false)}
+            </div>
+            <div 
+              className="flex items-center p-2 rounded-md hover:bg-gray-50 cursor-pointer"
+              onClick={() => navigateTo('/submit')}
             >
               <span>Submit</span>
-            </Link>
+            </div>
             <Button 
               variant="outline" 
               className="w-full border-teal-200 hover:bg-teal-50 mt-2"
