@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import FactCard from './FactCard';
 import { useToast } from '@/components/ui/use-toast';
 import { Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Sample data (in a real app, this would come from an API or database)
 const featuredFacts = [
@@ -569,6 +569,7 @@ const amazingFacts = {
 const FeaturedContent = () => {
   const { toast } = useToast();
   const [activeCategory, setActiveCategory] = useState<string>("featured");
+  const isMobile = useIsMobile();
 
   // Combine all amazing facts into one array for the "All Facts" tab
   const allAmazingFacts = [
@@ -588,7 +589,7 @@ const FeaturedContent = () => {
   };
 
   return (
-    <section id="amazing-facts-section" className="py-16 bg-gray-50">
+    <section id="amazing-facts-section" className={`py-16 bg-gray-50 ${isMobile ? 'mt-8' : ''}`}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div>
