@@ -15,7 +15,6 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
-import Minifacts from "./pages/Minifacts";
 
 const queryClient = new QueryClient();
 
@@ -43,8 +42,6 @@ const App = () => {
               <Route path="/" element={<Index />} />
               <Route path="/article/:slug" element={<Article />} />
               <Route path="/browse" element={<Index />} /> {/* Browse all facts route */}
-              <Route path="/minifacts" element={<Minifacts />} />
-              <Route path="/minifacts/:category" element={<Minifacts />} />
               <Route path="/lifehacks" element={<LifeHacks />} />
               <Route path="/lifehacks/:category" element={<NotFound />} />
               <Route path="/techtips" element={<TechTips />} />
@@ -53,6 +50,8 @@ const App = () => {
               <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/terms" element={<TermsOfService />} />
               <Route path="/food" element={<NotFound />} />
+              <Route path="/minifacts" element={<Index />} /> {/* Redirect to home page */}
+              <Route path="/minifacts/:category" element={<Index />} /> {/* Redirect to home page */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

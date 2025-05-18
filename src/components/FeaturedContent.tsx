@@ -588,7 +588,7 @@ const FeaturedContent = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section id="amazing-facts-section" className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div>

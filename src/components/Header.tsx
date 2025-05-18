@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, User, Lightbulb, Zap, Cpu, Brain } from 'lucide-react';
@@ -37,6 +36,25 @@ const Header = () => {
     setShowMobileMenu(false);
   };
 
+  const scrollToSection = (sectionId) => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Allow time for navigation before scrolling
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setShowMobileMenu(false);
+  };
+
   return (
     <header className="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -60,37 +78,52 @@ const Header = () => {
                   <ul className="grid gap-3 p-4 w-[400px] md:w-[500px] lg:w-[600px] grid-cols-2">
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
-                        <Link to="/minifacts" className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-purple-50 to-purple-100 p-6 no-underline outline-none focus:shadow-md">
+                        <a 
+                          href="#" 
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollToSection('amazing-facts-section');
+                          }}
+                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-purple-50 to-purple-100 p-6 no-underline outline-none focus:shadow-md"
+                        >
                           <div className="mb-2 mt-4 text-lg font-medium text-purple-600">
                             Mind-Blowing Facts
                           </div>
                           <p className="text-sm leading-tight text-purple-700 opacity-90">
                             Discover incredible facts that will amaze and surprise you.
                           </p>
-                        </Link>
+                        </a>
                       </NavigationMenuLink>
                     </li>
                     <li>
-                      <Link 
-                        to="/minifacts/science" 
+                      <a 
+                        href="#" 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToSection('amazing-facts-section');
+                        }}
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-purple-50 focus:bg-purple-50"
                       >
                         <div className="text-sm font-medium leading-none text-purple-800">Science Facts</div>
                         <p className="line-clamp-2 text-sm leading-snug text-purple-600">
                           Fascinating discoveries from the world of science.
                         </p>
-                      </Link>
+                      </a>
                     </li>
                     <li>
-                      <Link 
-                        to="/minifacts/history" 
+                      <a 
+                        href="#" 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToSection('amazing-facts-section');
+                        }}
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-purple-50 focus:bg-purple-50"
                       >
                         <div className="text-sm font-medium leading-none text-purple-800">Historical Facts</div>
                         <p className="line-clamp-2 text-sm leading-snug text-purple-600">
                           Surprising events and stories from history.
                         </p>
-                      </Link>
+                      </a>
                     </li>
                   </ul>
                 </NavigationMenuContent>
@@ -198,7 +231,7 @@ const Header = () => {
           <nav className="flex flex-col space-y-3">
             <div 
               className="flex items-center p-2 rounded-md hover:bg-gray-50 cursor-pointer"
-              onClick={() => navigateTo('/minifacts')}
+              onClick={() => scrollToSection('amazing-facts-section')}
             >
               <Lightbulb className="mr-3 text-purple-500" size={18} />
               <span>Amazing Facts</span>
