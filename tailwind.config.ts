@@ -160,7 +160,8 @@ export default {
 			},
 			fontFamily: {
 				'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
-				'display': ['Cabinet Grotesk', 'Inter', 'ui-sans-serif', 'system-ui']
+				'display': ['Cabinet Grotesk', 'Inter', 'ui-sans-serif', 'system-ui'],
+				'poetsen': ['Poetsen One', 'cursive']
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

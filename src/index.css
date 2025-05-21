@@ -1,5 +1,5 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -146,6 +146,11 @@
     @apply w-24 h-24 bottom-[20%] left-[20%];
     animation-name: float-3;
     animation-delay: 2s;
+  }
+
+  /* Font classes */
+  .font-poetsen {
+    font-family: 'Poetsen One', cursive;
   }
 }
 

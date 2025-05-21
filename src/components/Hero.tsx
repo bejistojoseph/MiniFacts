@@ -20,7 +20,7 @@ const Hero = () => {
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 text-white">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-poetsen mb-6 text-white">
             Unlock Amazing Facts & Smart Hacks for a Better Life
           </h1>
           
