@@ -41,7 +41,7 @@ const Loader = ({ onLoadComplete }: LoaderProps) => {
   return (
     <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-50 transition-opacity duration-300" style={{ opacity: progress === 100 ? 0 : 1 }}>
       <div className="relative mb-8">
-        <Brain size={60} className="text-teal-600 animate-pulse" />
+        <Brain size={60} className="text-purple-600 animate-pulse" />
         <div className="absolute -top-1 -right-1 w-3 h-3 bg-purple-400 rounded-full animate-ping" />
       </div>
       
