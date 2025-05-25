@@ -1,12 +1,30 @@
-
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const { toast } = useToast();
+
+  const scrollToSection = (sectionId) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      // Allow time for navigation before scrolling
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    setShowMobileMenu(false);
+  };
 
   return (
     <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-purple-900 to-blue-900">
@@ -23,41 +41,47 @@ const Hero = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-poetsen mb-6 text-white">
             Unlock Amazing Facts & Smart Hacks for a Better Life
           </h1>
-          
+
           <p className="text-gray-200 text-lg md:text-xl mb-8">
-            Explore our collection of fascinating minifacts, clever lifehacks, and expert tips to upgrade your everyday life.
+            Explore our collection of fascinating minifacts, clever lifehacks,
+            and expert tips to upgrade your everyday life.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 group"
               asChild
             >
-              <Link to="/minifacts">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("amazing-facts-section");
+                }}
+              >
                 Explore Facts
-                <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-              </Link>
+                <ArrowRight
+                  size={16}
+                  className="ml-2 transition-transform group-hover:translate-x-1"
+                />
+              </a>
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
+            <Button
+              size="lg"
+              variant="outline"
               className="border-purple-200 text-purple-600 bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-purple-300 hover:shadow-md transition-all duration-300"
               asChild
             >
-              <Link to="/lifehacks">
-                View Lifehacks
-              </Link>
+              <Link to="/lifehacks">View Lifehacks</Link>
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
+            <Button
+              size="lg"
+              variant="outline"
               className="border-blue-200 text-blue-600 bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-blue-300 hover:shadow-md transition-all duration-300"
               asChild
             >
-              <Link to="/techtips">
-                Tech Tips
-              </Link>
+              <Link to="/techtips">Tech Tips</Link>
             </Button>
           </div>
         </div>
