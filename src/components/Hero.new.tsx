@@ -72,7 +72,7 @@ const FloatingIcon = ({
   return (
     <Float
       speed={2}
-      rotationIntensity={0}
+      rotationIntensity={0.6}
       floatIntensity={1.2}
       position={adjustedPosition}
     >
@@ -150,7 +150,7 @@ const Hero = () => {
           <Suspense fallback={null}>
             <Environment preset="city" />
             <FloatingIcon
-              position={[-2.5, 2.5, 0]}
+              position={[-2, 1.5, 0]}
               emoji="💡"
               label="Ideas"
               delay={0}
@@ -207,8 +207,8 @@ const Hero = () => {
           <OrbitControls
             enableZoom={false}
             enablePan={false}
-            // autoRotate
-            // autoRotateSpeed={0.5}
+            autoRotate
+            autoRotateSpeed={0.5}
           />
         </Canvas>
       </div>
@@ -228,17 +228,17 @@ const Hero = () => {
             Unlock Amazing Facts & Smart Hacks for a Better Life
           </motion.h1>
 
-          {/* <motion.p
+          <motion.p
             variants={itemVariants}
             className="text-gray-200 text-base md:text-xl mb-8 backdrop-blur-sm bg-white/5 rounded-xl p-3"
           >
             Explore our collection of fascinating minifacts, clever lifehacks,
             and expert tips to upgrade your everyday life.
-          </motion.p> */}
+          </motion.p>
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row justify-center gap-4 p-2 rounded-xl"
+            className="flex flex-col sm:flex-row justify-center gap-4 backdrop-blur-sm p-2 rounded-xl"
           >
             <Button
               size="lg"
