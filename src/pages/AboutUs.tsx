@@ -16,6 +16,7 @@ const AboutUs = () => {
               <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 text-gray-900">About Minifacts</h1>
               <p className="text-lg text-gray-600 mb-8">
                 Bringing you fascinating facts, clever lifehacks, and expert tips to enrich your everyday life.
+               
               </p>
             </div>
           </div>
@@ -27,20 +28,20 @@ const AboutUs = () => {
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold mb-6 text-center">Our Story</h2>
               <div className="prose prose-lg mx-auto">
-                <p>
-                  Minifacts was founded in 2023 with a simple mission: to make knowledge more accessible and entertaining. 
-                  What started as a small blog sharing interesting facts has grown into a comprehensive platform dedicated 
-                  to enriching lives through bite-sized knowledge and practical tips.
+                <p className='text-align-centre'>
+                💡Welcome to Minifacts – your go-to hub for curious mini facts, clever life hacks, and everyday tricks that make life just a little easier (and a lot more fun)!
+
+              <div></div> 💡This website was born out of a spontaneous idea – I received a free domain from XYZ, and thought, “Why not build something fun and useful?” That’s when Minifacts came to life.
+
+                <div></div>💡But here’s the twist – I didn’t do it alone. I created this entire site with the help of AI tools like Lovable AI (for design inspiration), GitHub Copilot (for coding assistance), and of course, ChatGPT (for everything from ideas to content and development support). It’s a demo project, yes – but also a showcase of what you can build when creativity meets AI.
+
+              <div></div> 💡 Whether you’re here to learn why bananas are berries or how to chop herbs faster with a pizza cutter, I hope this site brings a smile to your face – and maybe teaches you something new.
+
+                
+
+
                 </p>
-                <p>
-                  Our team consists of researchers, writers, and fact-checkers who are passionate about uncovering fascinating 
-                  information and presenting it in engaging ways. We believe that learning should be fun, and that small pieces 
-                  of knowledge can make a big difference in how we see and interact with the world around us.
-                </p>
-                <p>
-                  Today, Minifacts reaches millions of curious minds each month, providing them with carefully curated content 
-                  that inspires, educates, and occasionally makes them say "wow!"
-                </p>
+                
               </div>
             </div>
           </div>
@@ -86,43 +87,7 @@ const AboutUs = () => {
           </div>
         </section>
 
-        {/* Team Section */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-12 text-center">Our Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {/* Team Member 1 */}
-              <div className="text-center">
-                <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto mb-4 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-purple-400 to-teal-400 opacity-80"></div>
-                </div>
-                <h3 className="font-bold text-xl">Alex Morgan</h3>
-                <p className="text-teal-600 mb-2">Founder & Editor-in-Chief</p>
-                <p className="text-gray-600 text-sm">Leading our editorial vision with 15+ years in digital publishing.</p>
-              </div>
 
-              {/* Team Member 2 */}
-              <div className="text-center">
-                <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto mb-4 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-400 opacity-80"></div>
-                </div>
-                <h3 className="font-bold text-xl">Jamie Chen</h3>
-                <p className="text-teal-600 mb-2">Head of Research</p>
-                <p className="text-gray-600 text-sm">Ensuring all our facts are accurate with a background in data science.</p>
-              </div>
-
-              {/* Team Member 3 */}
-              <div className="text-center">
-                <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto mb-4 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-teal-400 to-green-400 opacity-80"></div>
-                </div>
-                <h3 className="font-bold text-xl">Sam Taylor</h3>
-                <p className="text-teal-600 mb-2">Creative Director</p>
-                <p className="text-gray-600 text-sm">Bringing our content to life with engaging visuals and design.</p>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
     </div>
