@@ -150,37 +150,37 @@ const Hero = () => {
           <Suspense fallback={null}>
             <Environment preset="city" />
             <FloatingIcon
-              position={[-2.5, 2.5, 0]}
+              position={[-4.5, 3.6, 0]}
               emoji="💡"
               label="Ideas"
               delay={0}
             />
             <FloatingIcon
-              position={[1.5, 2, 0]}
+              position={[2, 3.6, 0]}
               emoji="🧠"
               label="Minifacts"
               delay={1}
             />
             <FloatingIcon
-              position={[-1.5, -1.5, 0]}
+              position={[-2.5, -3.8, 0]}
               emoji="📱"
               label="Tech Hacks"
               delay={2}
             />
             <FloatingIcon
-              position={[2, -1.2, 0]}
+              position={[2.8, -2.5, 0]}
               emoji="🍲"
               label="Kitchen Tips"
               delay={3}
             />
             <FloatingIcon
-              position={[-2, -0.5, 0]}
+              position={[-5, -0.5, 0]}
               emoji="💵"
               label="Money Hacks"
               delay={4}
             />
             <FloatingIcon
-              position={[0, 1.8, 0]}
+              position={[0, 4.5, 0]}
               emoji="🌍"
               label="Travel Tips"
               delay={5}
@@ -192,16 +192,22 @@ const Hero = () => {
               delay={6}
             />
             <FloatingIcon
-              position={[2, 0.5, 0]}
+              position={[2, 0, 0]}
               emoji="🔧"
               label="Life Hacks"
               delay={7}
             />
             <FloatingIcon
-              position={[-0.5, 0.5, 0]}
+              position={[-1.9, 3.9, 0]}
               emoji="🖥️"
               label="Tech Tips"
               delay={8}
+            />
+             <FloatingIcon
+              position={[-1.9, 5.9, 0]}
+              emoji="🔭"
+              label="Tech Tips"
+              delay={9}
             />
           </Suspense>
           <OrbitControls
