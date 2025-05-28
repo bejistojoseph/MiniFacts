@@ -62,26 +62,26 @@ const ContactUs = () => {
                   <Mail className="text-purple-500" size={24} />
                 </div>
                 <h3 className="font-bold text-xl mb-2">Email Us</h3>
-                <p className="text-gray-600">hello@minifacts.com</p>
-                <p className="text-gray-600">support@minifacts.com</p>
+                <p className="text-gray-600">minifacts44@gmail.com</p>
+                
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-sm text-center">
+              {/* <div className="bg-white p-6 rounded-lg shadow-sm text-center">
                 <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Phone className="text-teal-500" size={24} />
                 </div>
                 <h3 className="font-bold text-xl mb-2">Call Us</h3>
                 <p className="text-gray-600">+1 (555) 123-4567</p>
                 <p className="text-gray-600">Mon-Fri: 9am - 5pm EST</p>
-              </div>
+              </div> */}
 
               <div className="bg-white p-6 rounded-lg shadow-sm text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MapPin className="text-blue-500" size={24} />
                 </div>
                 <h3 className="font-bold text-xl mb-2">Location</h3>
-                <p className="text-gray-600">123 Knowledge Street</p>
-                <p className="text-gray-600">Factville, FC 54321</p>
+                <p className="text-gray-600">Tambaram</p>
+                <p className="text-gray-600">Chennai, PO-600045</p>
               </div>
             </div>
 

@@ -119,7 +119,7 @@ const TermsOfService = () => {
                 If you have any questions about these Terms, please contact us:
               </p>
               <ul>
-                <li>By email: legal@minifacts.com</li>
+                <li>By email: minifacts44@gmail.com</li>
                 <li>By visiting the contact page on our website</li>
               </ul>
             </div>
