@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Facebook, Twitter, Instagram, Github } from 'lucide-react';
+import { Mail, Facebook, Twitter, Instagram, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
@@ -10,13 +10,35 @@ const Footer = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState('');
 
-  const handleSocialClick = (platform: string) => {
-    toast({
-      title: `${platform}`,
-      description: `${platform} sharing functionality coming soon`,
-      duration: 3000,
-    });
-  };
+const handleSocialClick = (platform: string) => {
+  const shareUrl = encodeURIComponent("https://yourwebsite.com"); // Replace with your site or specific post
+  const shareText = encodeURIComponent("Check out these amazing facts on Minifacts!");
+
+  let url = "";
+
+  switch (platform) {
+    case 'Facebook':
+      url = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+      break;
+    case 'Twitter':
+      url = `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`;
+      break;
+    case 'Instagram':
+      toast({
+        title: "Instagram",
+        description: "Instagram does not support web sharing. Please share manually.",
+        duration: 4000,
+      });
+      return; // Instagram doesn't support web-based sharing
+     case 'WhatsApp':
+      url = `https://api.whatsapp.com/send?text=${shareText}%20${shareUrl}`;
+      break;
+    default:
+      return;
+  }
+
+  window.open(url, "_blank");
+};
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,13 +97,14 @@ const Footer = () => {
               >
                 <Instagram size={20} />
               </button>
-              <button 
-                className="text-gray-400 hover:text-teal-500 transition-colors"
-                onClick={() => handleSocialClick('GitHub')}
-                aria-label="GitHub"
-              >
-                <Github size={20} />
-              </button>
+          <button 
+  className="text-gray-400 hover:text-teal-500 transition-colors"
+  onClick={() => handleSocialClick('WhatsApp')}
+  aria-label="WhatsApp"
+>
+  <MessageCircle size={20} />
+</button>
+
             </div>
           </div>
           
@@ -120,7 +143,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link 
-                  to="/tech" 
+                  to="/techtips" 
                   className="text-gray-600 hover:text-teal-500 transition-colors"
                   onClick={() => {
                     toast({
