@@ -156,7 +156,7 @@ const Hero = () => {
               delay={0}
             />
             <FloatingIcon
-              position={[2, 3.6, 0]}
+              position={[2.5, 3.6, 0]}
               emoji="🧠"
               label="Minifacts"
               delay={1}
@@ -206,8 +206,14 @@ const Hero = () => {
              <FloatingIcon
               position={[-1.9, 5.9, 0]}
               emoji="🔭"
-              label="Tech Tips"
+              label="added1"
               delay={9}
+            />
+            <FloatingIcon
+              position={[5.2, 4.5, 0]}
+              emoji="✈️"
+              label="added2"
+              delay={1}
             />
           </Suspense>
           <OrbitControls
