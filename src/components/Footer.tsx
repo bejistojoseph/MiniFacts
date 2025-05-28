@@ -247,7 +247,7 @@ const Footer = () => {
             © {new Date().getFullYear()} Minifacts. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link 
+            {/* <Link 
               to="/privacy" 
               className="text-sm text-gray-500 hover:text-teal-500 transition-colors"
               onClick={() => {
@@ -259,7 +259,7 @@ const Footer = () => {
               }}
             >
               Privacy
-            </Link>
+            </Link> */}
             <Link 
               to="/terms" 
               className="text-sm text-gray-500 hover:text-teal-500 transition-colors"
