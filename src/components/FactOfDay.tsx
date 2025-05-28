@@ -37,7 +37,7 @@ const FactOfDay = () => {
               />
               <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center">
                 <Calendar size={14} className="text-teal-600 mr-1" />
-                <span className="text-xs font-medium">April 16, 2025</span>
+                <span className="text-xs font-medium">Today</span>
               </div>
               <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent h-1/3 md:hidden"></div>
             </div>

@@ -42,7 +42,7 @@ const App = () => {
           <div style={{ opacity: loading ? 0 : 1 }} className="transition-opacity duration-500">
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/article/:slug" element={<Article />} />
+              {/* <Route path="/article/:slug" element={<Article />} /> */}
               <Route path="/browse" element={<Index />} /> {/* Browse all facts route */}
               <Route path="/lifehacks" element={<LifeHacks />} />
               <Route path="/lifehacks/:category" element={<NotFound />} />
