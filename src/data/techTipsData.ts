@@ -339,6 +339,7 @@ export const categories = [
     icon: Laptop, 
     color: 'text-blue-500',
     bgColor: 'bg-blue-50',
+    activeBgColor: "bg-blue-500",
     borderColor: 'border-blue-100'
   },
   { 
@@ -347,6 +348,7 @@ export const categories = [
     icon: Smartphone, 
     color: 'text-green-500',
     bgColor: 'bg-green-50',
+    activeBgColor: "bg-green-500",
     borderColor: 'border-green-100'
   },
   { 
@@ -355,6 +357,7 @@ export const categories = [
     icon: Globe, 
     color: 'text-amber-500',
     bgColor: 'bg-amber-50',
+    activeBgColor: "bg-amber-500",
     borderColor: 'border-amber-100'
   },
   { 
@@ -363,6 +366,7 @@ export const categories = [
     icon: Computer, 
     color: 'text-purple-500',
     bgColor: 'bg-purple-50',
+    activeBgColor: "bg-purple-500",
     borderColor: 'border-purple-100'
   },
   { 
@@ -371,6 +375,7 @@ export const categories = [
     icon: Shield, 
     color: 'text-red-500',
     bgColor: 'bg-red-50',
+    activeBgColor: "bg-red-500",
     borderColor: 'border-red-100'
   },
   { 
@@ -379,6 +384,7 @@ export const categories = [
     icon: Sparkles, 
     color: 'text-pink-500',
     bgColor: 'bg-pink-50',
+    activeBgColor: "bg-pink-500",
     borderColor: 'border-pink-100'
   }
 ];
