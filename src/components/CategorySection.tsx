@@ -35,7 +35,7 @@ const categories = [
     color: 'bg-blue-50 hover:bg-blue-100',
     textColor: 'text-blue-700',
     borderColor: 'border-blue-100',
-    link: '/tech',
+    link: '/techtips',
     toastMessage: 'Exploring tech tips to optimize your digital life'
   },
   {
