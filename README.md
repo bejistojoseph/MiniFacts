@@ -41,3 +41,9 @@ npm install
 
 # Step 4: Start the development server
 npm run dev
+```
+
+
+## 🌍 Live Website
+Check it out here:
+🔗 https://lovable.dev/projects/bb00c4fc-1d19-402b-8fd4-a2444f771d5c
