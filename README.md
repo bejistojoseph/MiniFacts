@@ -1,73 +1,43 @@
-# Welcome to your Lovable project
+# 🌟 Welcome to Minifacts
 
-## Project info
+Your daily dose of **amazing mini facts**, **life hacks**, and **clever tricks** – all packed into one beautifully designed website!
 
-**URL**: https://lovable.dev/projects/bb00c4fc-1d19-402b-8fd4-a2444f771d5c
+## 📖 About This Project
 
-## How can I edit this code?
+Minifacts is a fun and interactive website built to deliver bite-sized knowledge, productivity tips, and everyday hacks to curious minds. From quirky science facts to tech tricks and DIY ideas, there's something here for everyone.
 
-There are several ways of editing your application.
+This project started as a **demo experiment** – I received a **free domain** and thought, *“Why not build something useful and fun?”*
 
-**Use Lovable**
+With the help of **AI tools** like:
+- 💡 ChatGPT (for content, logic, and structure)
+- 🧠 GitHub Copilot (for coding assistance)
+- ✨ Lovable.ai (for UI generation and rapid prototyping)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/bb00c4fc-1d19-402b-8fd4-a2444f771d5c) and start prompting.
+...this project came to life quickly and creatively.
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🔧 Tech Stack
 
-**Use your preferred IDE**
+This website was built using modern web technologies:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- ⚡ **Vite** – for blazing-fast development
+- ⚛️ **React + TypeScript** – for structured, scalable components
+- 🎨 **Tailwind CSS** – for utility-first styling
+- 🧱 **shadcn/ui** – for beautiful, accessible components
+- 🌐 Optional: **Lovable AI** – for quick no-code/low-code UI assistance
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 📂 How to Run Locally
 
-Follow these steps:
+To run the project locally:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+```bash
+# Step 1: Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
+# Step 2: Navigate to the directory
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Step 3: Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Start the development server
 npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/bb00c4fc-1d19-402b-8fd4-a2444f771d5c) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
