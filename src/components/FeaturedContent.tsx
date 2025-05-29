@@ -589,17 +589,19 @@ const FeaturedContent = () => {
   };
 
   return (
-    <section id="amazing-facts-section" className={`py-16 bg-gray-50 ${isMobile ? 'mt-8' : ''}`}>
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-          <div>
-            <h2 className="text-3xl font-display font-bold text-gray-900 mb-2">Amazing Facts</h2>
-            <p className="text-gray-600">
-              Explore fascinating facts about our world and beyond
-            </p>
-          </div>
-          <div className="mt-4 md:mt-0 flex gap-2">
-            <Button 
+    <section id="amazing-facts-section" className={`py-16 bg-gray-50 ${isMobile ? 'mt-8 pb-24' : ''}`}>
+      <div className="container mx-auto px-4 relative">
+       <div className="flex flex-col md:flex-row justify-center md:justify-between items-center text-center md:text-left mb-8 w-full">
+  <div className="md:w-1/2">
+    <h2 className="text-3xl font-display font-bold text-gray-900 mb-2">
+      Amazing Facts
+    </h2>
+    <p className="text-gray-600">
+      Explore fascinating facts about our world and beyond
+    </p>
+  </div>
+  <div className="mt-4 md:mt-0 flex gap-2">
+            {/* <Button 
               variant="outline" 
               className="border-teal-200 text-teal-600 hover:bg-teal-50"
               onClick={() => {
@@ -612,134 +614,140 @@ const FeaturedContent = () => {
               asChild
             >
               <Link to="/browse">View All</Link>
-            </Button>
+            </Button> */}
           </div>
         </div>
         
-        <Tabs defaultValue="featured" className="mb-8">
-          <TabsList className="flex flex-wrap mb-6 gap-2">
-            <TabsTrigger
-              value="featured"
-              onClick={() => setActiveCategory("featured")} 
-              className="data-[state=active]:bg-purple-100 data-[state=active]:text-purple-600 data-[state=active]:shadow-none"
-            >
-              Featured
-            </TabsTrigger>
-            <TabsTrigger
-              value="nature"
-              onClick={() => setActiveCategory("nature")} 
-              className="data-[state=active]:bg-green-100 data-[state=active]:text-green-600 data-[state=active]:shadow-none"
-            >
-              Nature & Science
-            </TabsTrigger>
-            <TabsTrigger
-              value="animals"
-              onClick={() => setActiveCategory("animals")} 
-              className="data-[state=active]:bg-amber-100 data-[state=active]:text-amber-600 data-[state=active]:shadow-none"
-            >
-              Animal Kingdom
-            </TabsTrigger>
-            <TabsTrigger
-              value="human"
-              onClick={() => setActiveCategory("human")} 
-              className="data-[state=active]:bg-red-100 data-[state=active]:text-red-600 data-[state=active]:shadow-none"
-            >
-              Human Body
-            </TabsTrigger>
-            <TabsTrigger
-              value="history"
-              onClick={() => setActiveCategory("history")} 
-              className="data-[state=active]:bg-indigo-100 data-[state=active]:text-indigo-600 data-[state=active]:shadow-none"
-            >
-              History & Culture
-            </TabsTrigger>
-            <TabsTrigger
-              value="space"
-              onClick={() => setActiveCategory("space")} 
-              className="data-[state=active]:bg-violet-100 data-[state=active]:text-violet-600 data-[state=active]:shadow-none"
-            >
-              Space & Tech
-            </TabsTrigger>
-            <TabsTrigger
-              value="wtf"
-              onClick={() => setActiveCategory("wtf")} 
-              className="data-[state=active]:bg-pink-100 data-[state=active]:text-pink-600 data-[state=active]:shadow-none"
-            >
-              Strange Facts
-            </TabsTrigger>
-            <TabsTrigger
-              value="all"
-              onClick={() => setActiveCategory("all")} 
-              className="data-[state=active]:bg-gray-100 data-[state=active]:text-gray-600 data-[state=active]:shadow-none"
-            >
-              All Facts
-            </TabsTrigger>
-          </TabsList>
+        
+        <Tabs defaultValue="featured" className="mb-8 relative">
+          <div className="top-0 z-50 bg-gray-50/95 backdrop-blur-sm py-4 px-2 rounded-lg shadow-sm mb-8">
+            <TabsList className="flex flex-wrap gap-3">
+              <TabsTrigger
+                value="featured"
+                onClick={() => setActiveCategory("featured")} 
+                className="data-[state=active]:bg-purple-100 data-[state=active]:text-purple-600 data-[state=active]:shadow-none"
+              >
+                Featured
+              </TabsTrigger>
+              <TabsTrigger
+                value="nature"
+                onClick={() => setActiveCategory("nature")} 
+                className="data-[state=active]:bg-green-100 data-[state=active]:text-green-600 data-[state=active]:shadow-none"
+              >
+                Nature & Science
+              </TabsTrigger>
+              <TabsTrigger
+                value="animals"
+                onClick={() => setActiveCategory("animals")} 
+                className="data-[state=active]:bg-amber-100 data-[state=active]:text-amber-600 data-[state=active]:shadow-none"
+              >
+                Animal Kingdom
+              </TabsTrigger>
+              <TabsTrigger
+                value="human"
+                onClick={() => setActiveCategory("human")} 
+                className="data-[state=active]:bg-red-100 data-[state=active]:text-red-600 data-[state=active]:shadow-none"
+              >
+                Human Body
+              </TabsTrigger>
+              <TabsTrigger
+                value="history"
+                onClick={() => setActiveCategory("history")} 
+                className="data-[state=active]:bg-indigo-100 data-[state=active]:text-indigo-600 data-[state=active]:shadow-none"
+              >
+                History & Culture
+              </TabsTrigger>
+              <TabsTrigger
+                value="space"
+                onClick={() => setActiveCategory("space")} 
+                className="data-[state=active]:bg-violet-100 data-[state=active]:text-violet-600 data-[state=active]:shadow-none"
+              >
+                Space & Tech
+              </TabsTrigger>
+              <TabsTrigger
+                value="wtf"
+                onClick={() => setActiveCategory("wtf")} 
+                className="data-[state=active]:bg-pink-100 data-[state=active]:text-pink-600 data-[state=active]:shadow-none"
+              >
+                Strange Facts
+              </TabsTrigger>
+              <TabsTrigger
+                value="all"
+                onClick={() => setActiveCategory("all")} 
+                className="data-[state=active]:bg-gray-100 data-[state=active]:text-gray-600 data-[state=active]:shadow-none"
+              >
+                All Facts
+              </TabsTrigger>
+            </TabsList>
+          </div>
           
-          <TabsContent value="featured" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {getDisplayedFacts().map((fact) => (
-                <FactCard key={fact.id} {...fact} />
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="nature" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {getDisplayedFacts().map((fact) => (
-                <FactCard key={fact.id} {...fact} />
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="animals" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {getDisplayedFacts().map((fact) => (
-                <FactCard key={fact.id} {...fact} />
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="human" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {getDisplayedFacts().map((fact) => (
-                <FactCard key={fact.id} {...fact} />
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="history" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {getDisplayedFacts().map((fact) => (
-                <FactCard key={fact.id} {...fact} />
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="space" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {getDisplayedFacts().map((fact) => (
-                <FactCard key={fact.id} {...fact} />
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="wtf" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {getDisplayedFacts().map((fact) => (
-                <FactCard key={fact.id} {...fact} />
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="all" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {getDisplayedFacts().map((fact) => (
-                <FactCard key={fact.id} {...fact} />
-              ))}
-            </div>
-          </TabsContent>
+          <div className="relative mt-[120px]">
+            <TabsContent value="featured" className="mt-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {getDisplayedFacts().map((fact) => (
+                  <FactCard key={fact.id} {...fact} />
+                ))}
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="nature" className="mt-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {getDisplayedFacts().map((fact) => (
+                  <FactCard key={fact.id} {...fact} />
+                ))}
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="animals" className="mt-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {getDisplayedFacts().map((fact) => (
+                  <FactCard key={fact.id} {...fact} />
+                ))}
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="human" className="mt-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {getDisplayedFacts().map((fact) => (
+                  <FactCard key={fact.id} {...fact} />
+                ))}
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="history" className="mt-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {getDisplayedFacts().map((fact) => (
+                  <FactCard key={fact.id} {...fact} />
+                ))}
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="space" className="mt-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {getDisplayedFacts().map((fact) => (
+                  <FactCard key={fact.id} {...fact} />
+                ))}
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="wtf" className="mt-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {getDisplayedFacts().map((fact) => (
+                  <FactCard key={fact.id} {...fact} />
+                ))}
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="all" className="mt-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {getDisplayedFacts().map((fact) => (
+                  <FactCard key={fact.id} {...fact} />
+                ))}
+              </div>
+            </TabsContent>
+          </div>
         </Tabs>
+        
       </div>
     </section>
   );
