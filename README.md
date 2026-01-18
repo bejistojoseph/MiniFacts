@@ -1,10 +1,10 @@
 # 🌟 Welcome to Minifacts
 
-Your daily dose of **amazing mini facts**, **life hacks**, and **clever tricks** – all packed into one beautifully designed website!
+Your daily dose of **amazing mini facts**, **life hacks** and **clever tricks** – all packed into one beautifully designed website!
 
 ## 📖 About This Project
 
-Minifacts is a fun and interactive website built to deliver bite-sized knowledge, productivity tips, and everyday hacks to curious minds. From quirky science facts to tech tricks and DIY ideas, there's something here for everyone.
+Minifacts is a fun and interactive website built to deliver bite-sized knowledge, productivity tips and everyday hacks to curious minds. From quirky science facts to tech tricks and DIY ideas, there's something here for everyone.
 
 This project started as a **demo experiment** – I received a **free domain** and thought, *“Why not build something useful and fun?”*
 
