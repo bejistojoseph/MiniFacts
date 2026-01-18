@@ -13,7 +13,7 @@ With the help of **AI tools** like:
 - 🧠 GitHub Copilot (for coding assistance)
 - ✨ Lovable.ai (for UI generation and rapid prototyping)
 
-...this project came to life quickly and creatively.
+
 
 ## 🔧 Tech Stack
 
