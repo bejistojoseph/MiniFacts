@@ -31,7 +31,7 @@ To run the project locally:
 
 ```bash
 # Step 1: Clone the repository
-git clone <YOUR_GIT_URL>
+git clone <GIT_URL>
 
 # Step 2: Navigate to the directory
 cd <YOUR_PROJECT_NAME>
